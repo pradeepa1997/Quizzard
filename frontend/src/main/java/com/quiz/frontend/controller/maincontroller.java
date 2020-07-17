@@ -19,4 +19,10 @@ public class maincontroller {
     public String home(final Model model) {
         return "home";
     }
+    
+    @RequestMapping(value = "/admin")
+    public String admin(final Model model) {
+        return "adminpanel";
+        
+    }
 }
