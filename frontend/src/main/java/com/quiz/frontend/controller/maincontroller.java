@@ -1,7 +1,4 @@
-package com.quiz.frontend.controler;
-
-import java.lang.reflect.Array;
-import java.util.List;
+package com.quiz.frontend.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
