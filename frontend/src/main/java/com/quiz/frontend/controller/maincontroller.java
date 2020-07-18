@@ -1,4 +1,4 @@
-package com.quiz.frontend.controler;
+package com.quiz.frontend.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,5 +19,11 @@ public class maincontroller {
     @RequestMapping(value = "/quiz")
     public String quiz(final Model model) {
         return "quiz";
+    }
+    
+    @RequestMapping(value = "/admin")
+    public String admin(final Model model) {
+        return "adminpanel";
+        
     }
 }

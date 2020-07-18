@@ -1,4 +1,4 @@
-package com.quiz.frontend.controler;
+package com.quiz.frontend.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
