@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class maincontroller {
+
     @RequestMapping(value = "/index")
     public String index(final Model model) {
         final String name = "pradeepa Sandaruwan";
@@ -17,9 +18,12 @@ public class maincontroller {
         model.addAttribute("name", name);
         return "index";
     }
-
     @RequestMapping(value = "/home")
     public String home(final Model model) {
         return "home";
+    }
+    @RequestMapping(value = "/login")
+    public String login(final Model model) {
+        return "login";
     }
 }
