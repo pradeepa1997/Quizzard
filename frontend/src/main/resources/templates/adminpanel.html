@@ -12,8 +12,8 @@
     <script src="https://kit.fontawesome.com/d43d952765.js" crossorigin="anonymous"></script>
     <title> Quizzard - Home </title>
   </head>
-  <body class="body-main">
-    <div class="container-fluid p-0 m-0" >
+  <body style="font-family: 'Roboto', sans-serif;" >
+    <div class="container-fluid p-0 m-0" style="height: 100vh;background-color: #223;">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand pr-5" href="/">
@@ -24,27 +24,31 @@
                 </button>
             
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active pr-3">
-                            <a class="nav-link text-muted" href="/home"><i class="fas fa-home pr-1"></i> Home</a>
-                        </li>
-                        <li class="nav-item pr-3">
-                        <a class="nav-link" href="/activity"> <i class="fas fa-history pr-1"></i> activity </a>
-                        </li>
-                    </ul>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active pr-3">
+                        <a class="nav-link text-muted" href="/home"><i class="fas fa-home pr-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item pr-3">
+                    <a class="nav-link" href="/activity"> <i class="fas fa-history pr-1"></i> activity </a>
+                    </li>
+                </ul>
 
-                    <ul class="navbar-nav ml-auto ">
-                        <li class="nav-item active pr-3">
-                            <div class="row">
-                                <img class="rounded-circle" style="max-width: 40px;height:40px"src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="user">
-                                <a class="nav-link" href="#"> <strong> Sample User </strong> </a>    
-                            </div>
-                        </li>
-                    </ul>
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item active pr-3">
+                        <div class="row">
+                            <img class="rounded-circle" style="max-width: 40px;height:40px"src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="user">
+                            <a class="nav-link" href="#"> <strong> Sample User </strong> </a>    
+                        </div>
+                    </li>
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form> -->
                 </div>
             </div>
         </nav>
-        <div class="d-flex justify-content-center px-2" style="padding-top: 100px;">
+        <div class="d-flex justify-content-center px-5" style="padding-top: 100px;">
             <div class="col-lg-6">
                 <div class="searchbar shadow">
                     <input class="search_input" type="text" name="" placeholder="Search for a game code...">
@@ -52,9 +56,9 @@
                 </div>
             </div>
         </div>
-        <div class="container pt-2">
-            <h5 class="text-white px-3 pt-3"> Category Here! </h5>
-            <div class="row px-3">
+        <!-- <div class="container pt-2">
+            <h3 class="text-white pt-3"> Category Here! </h3>
+            <div class="row">
                 <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
                     <div class="card shadow  quiz-hover">
                         <div class="card header">
@@ -97,8 +101,8 @@
                 </div>
             </div>
 
-            <h5 class="text-white px-3 pt-3"> Category Here! </h5>
-            <div class="row px-3">
+            <h3 class="text-white pt-3"> Category Here! </h3>
+            <div class="row">
                 <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
                     <div class="card shadow  quiz-hover">
                         <div class="card header">
@@ -151,13 +155,13 @@
                             <h5 class="text-center"> Title Comes here</h5>
                         </div>
                         <div class="modal-footer">
-                            <a href="/quiz" type="button" class="btn btn-primary"> Start Quiz </a>
+                            <button type="button" class="btn btn-primary">Start Quiz</button>
                             <button type="button" class="btn btn-danger " data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>  
   </body>
 </html>

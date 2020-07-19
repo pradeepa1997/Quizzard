@@ -1,7 +1,4 @@
-package com.quiz.frontend.controler;
-
-import java.lang.reflect.Array;
-import java.util.List;
+package com.quiz.frontend.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +9,6 @@ public class maincontroller {
 
     @RequestMapping(value = "/index")
     public String index(final Model model) {
-        final String name = "pradeepa Sandaruwan";
-        // data ("pradeepa");
-        // data.add("Sandaruwan");
-        model.addAttribute("name", name);
         return "index";
     }
     @RequestMapping(value = "/home")
@@ -25,5 +18,15 @@ public class maincontroller {
     @RequestMapping(value = "/login")
     public String login(final Model model) {
         return "login";
+    }
+    @RequestMapping(value = "/quiz")
+    public String quiz(final Model model) {
+        return "quiz";
+    }
+    
+    @RequestMapping(value = "/admin")
+    public String admin(final Model model) {
+        return "adminpanel";
+        
     }
 }
