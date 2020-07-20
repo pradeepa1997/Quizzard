@@ -1,14 +1,16 @@
 package com.quiz.frontend.controller;
 
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-@RestController
+@Controller
 public class homeController {
-
-    // @RequestMapping(value = "/home")
-    // public String home(final Model model) {
-    //     return "home";
-    // }
+    @GetMapping(value = "/profile")
+    public String profile(final Model model) {
+        // model.addAttribute("quiz", new QuizPost());
+        return "profile";   
+    }
 }

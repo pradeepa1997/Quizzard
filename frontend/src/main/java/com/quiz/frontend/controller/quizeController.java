@@ -20,7 +20,7 @@ public class quizeController {
         model.addAttribute("quiz", new QuizPost());
         return "addquiz";   
     }
-
+   
     @PostMapping("/addquiz")
     public String addQuizSubmit(@ModelAttribute QuizPost quizPost){
         System.out.println(quizPost.getQuizName());
