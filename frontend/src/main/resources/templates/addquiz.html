@@ -13,38 +13,73 @@
     
     <title> Quizzard </title>
   </head>
-  <body >
+  <body onload="onLoad()">
+    
+    <div class="container-fluid p-0 m-0" >
+      <nav class="navbar navbar-expand-lg navbar-light bg-light " >
+          <div class="container">
+              <a class="navbar-brand pr-5" href="/">
+                  <img src="images/logo2.png" alt="logo" style="max-width: 80px;">
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                      <li class="nav-item active pr-3">
+                          <a class="nav-link text-muted" href="/home"><i class="fas fa-home pr-1"></i> Home</a>
+                      </li>
+                      <li class="nav-item pr-3">
+                      <a class="nav-link" href="/activity"> <i class="fas fa-history pr-1"></i> activity </a>
+                      </li>
+                  </ul>
 
+                  <ul class="navbar-nav ml-auto ">
+                      <li class="nav-item active pr-3">
+                          <div class="row">
+                              <img class="rounded-circle" style="max-width: 40px;height:40px"src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="user">
+                              <a class="nav-link" href="#"> <strong> Sample User </strong> </a>    
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+    </div>
     <div class="container-fluid p-0 m-0" style="height: 100vh;background-color: #223;">
       <!-- <h1>Hello world</h1> -->
       <div class="addquiz-card">
+        
           <h3 class="addquiz-header">Create Your quiz in Quizzard</h3>
           <form class="form" action="#" th:action="@{/addquiz}" th:object="${quiz}" method="post">
-            <div class="form-group row">
+            <div class="form-group row form-group-1">
                 
                 <div class="col-md-8">
-                    <label for="exampleInputPassword1">Select Your Category</label>
-                    <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>Choose...</option>
-                        <option value="1">Maths</option>
-                        <option value="2">Science</option>
-                        <option value="3">Art</option>
-                        <option value="4">IT</option>
-                        <option value="0">other</option>
+                    <label for="exampleInputPassword1">Select Your Quiz Category</label>
+                    <select class="custom-select" id="quizeCategory" th:field="*{quizeCategory}" required onchange="changedisblity(event)">
+                        <option selected th:value="''" th:text="Choose..."></option>
+                        <option th:value="'Maths'" th:text="Maths">Maths</option>
+                        <option th:value="'Science'" th:text="Science">Science</option>
+                        <option th:value="'Art'" th:text="Art">Art</option>
+                        <option th:value="'IT'" th:text="IT">IT</option>
+                        <option th:value="'other'" th:text="other">other</option>
                     </select>
                 </div >
                 <div class="col-md-4">
                     <label for="othertype" style="color: white;">a</label>
-                    <input type="text" class="form-control" id="othertype" placeholder="Enter Type" th:field="*{quizeCategory}">      
+                    <input type="text" class="form-control" id="othertype" placeholder="Enter Type" th:field="*{other}" disabled >      
                 </div>     
               </div>
             
-            <div class="form-group">
+            <div class="form-group form-group-1">
               <label for="quizname">Quize Name</label>
-              <input type="text" class="form-control" id="quizname" placeholder="Ex:Myquize" th:field="*{quizName}">
+              <input type="text" class="form-control" id="quizname" placeholder="Ex:Myquize" th:field="*{quizName}" required>
             </div>
+            
             <div class="btn-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+              <small th:if="${error}" th:text="'Something went wrong please try again'" class="text-danger"> </small>
+                <button type="submit" class="btn btn-primary">Create</button>
             </div>
             
           </form>
