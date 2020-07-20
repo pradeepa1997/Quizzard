@@ -18,7 +18,12 @@ public class Quiztry {
     private Integer quizID;
     @Column(name="marks")
     private Integer marks;
-    
+
+    Quiztry(Integer user,Integer quize,Integer mark){
+        this.userID=user;
+        this.quizID=quize;
+        this.marks=mark;
+    }
 
 
     public Integer getId() {

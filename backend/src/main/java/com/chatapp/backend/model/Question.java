@@ -37,6 +37,7 @@ public class Question {
     private String correctAns;
     
     
+    // Question(Integer quiz,String de )
     
     public String getChoice1() {
         return choice1;

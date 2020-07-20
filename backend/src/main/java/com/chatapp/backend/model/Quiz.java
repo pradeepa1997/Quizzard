@@ -11,8 +11,13 @@ public class Quiz {
     @GeneratedValue
     @Column(name="quizID") 
     private Integer quizID;
+
+    @Column(name="quizCategory")
+    private String quizCategory;
+
     @Column(name="quizName")
     private String quizName;
+
     @Column(name="creatorID")
     private Integer creatorID;
     
@@ -29,6 +34,12 @@ public class Quiz {
     }
     public Integer getCreatorID() {
         return creatorID;
+    }
+    public void setQuizCategory(String quizCategory) {
+        this.quizCategory = quizCategory;
+    }
+    public String getQuizCategory() {
+        return quizCategory;
     }
     public Integer getQuizID() {
         return quizID;
