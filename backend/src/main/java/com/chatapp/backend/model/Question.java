@@ -15,8 +15,8 @@ public class Question {
     @Column(name="quizID") 
     private Integer quizID;
 
-    @Column(name="questionName") 
-    private String questionName;
+    // @Column(name="questionName") 
+    // private String questionName;
 
     @Column(name="description") 
     private String description;
@@ -34,7 +34,7 @@ public class Question {
     private String choice4;
 
     @Column(name="correctAns")
-    private String correctAns;
+    private Integer correctAns;
     
     
     // Question(Integer quiz,String de )
@@ -51,7 +51,7 @@ public class Question {
     public String getChoice4() {
         return choice4;
     }
-    public String getCorrectAns() {
+    public Integer getCorrectAns() {
         return correctAns;
     }
     public String getDescription() {
@@ -60,9 +60,9 @@ public class Question {
     public Integer getQuestionID() {
         return questionID;
     }
-    public String getQuestionName() {
-        return questionName;
-    }
+    // public String getQuestionName() {
+    //     return questionName;
+    // }
     public Integer getQuizID() {
         return quizID;
     }
@@ -78,7 +78,7 @@ public class Question {
     public void setChoice4(String choice4) {
         this.choice4 = choice4;
     }
-    public void setCorrectAns(String correctAns) {
+    public void setCorrectAns(Integer correctAns) {
         this.correctAns = correctAns;
     }
     public void setDescription(String description) {
@@ -87,9 +87,9 @@ public class Question {
     public void setQuestionID(Integer questionID) {
         this.questionID = questionID;
     }
-    public void setQuestionName(String questionName) {
-        this.questionName = questionName;
-    }
+    // public void setQuestionName(String questionName) {
+    //     this.questionName = questionName;
+    // }
     public void setQuizID(Integer quizID) {
         this.quizID = quizID;
     }
