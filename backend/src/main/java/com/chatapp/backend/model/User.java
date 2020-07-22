@@ -14,12 +14,18 @@ public class User {
     @GeneratedValue
     @Column(name="userID") 
     private Integer userID;
+    
     @Column(name="userName")
     private String userName;
+    
     @Column(name="email")
     private String email;
+    
     @Column(name="password")
     private String password;
+
+    @Column(name="userType")
+    private String userType;
 
     public String getEmail() {
         return email;
@@ -33,19 +39,24 @@ public class User {
     public String getUserName() {
         return userName;
     }
-    public void setEmail(String email) {
+    public String getUserType() {
+        return userType;
+    }
+    public void setEmail(final String email) {
         this.email = email;
     }
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
-    public void setUserID(Integer userID) {
+    public void setUserID(final Integer userID) {
         this.userID = userID;
     }
-    public void setUserName(String userName) {
+    public void setUserName(final String userName) {
         this.userName = userName;
     }
-
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     // public Users(String name,String email,String password){
         
