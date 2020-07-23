@@ -1,5 +1,4 @@
 package com.quiz.frontend.model.Quiz;
-
 import java.io.Serializable;
 
 public class Quiz implements Serializable {
