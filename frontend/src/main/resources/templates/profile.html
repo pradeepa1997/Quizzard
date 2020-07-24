@@ -37,7 +37,7 @@
                         <li class="nav-item active pr-3">
                             <div class="row">
                                 <img class="rounded-circle" style="max-width: 30px;height:30px;margin-top: 7px;"src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="user">
-                                <a class="nav-link" href="/profile/1"> <strong  th:text="${userName}">  </strong> </a>    
+                                <a class="nav-link" href="/profile/1"> <strong  th:text="${user.userName}">  </strong> </a>    
                             </div>
                         </li>
                     </ul>
@@ -85,10 +85,10 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="border-bottom pb-2">
-                                    <h5> <strong th:text="${userName}"></strong></h5>
+                                    <h5> <strong th:text="${user.userName}"></strong></h5>
                                 </div>
                                 <div class="text-muted py-2">
-                                    <h6 th:text="${userMail}"></h6>
+                                    <h6 th:text="${user.email}"></h6>
                                     1  Quiz(es) Posted
                                     <br>
                                     3 Quiz(es) Answered    
@@ -137,15 +137,20 @@
                    <h5 class="text-white my-0"> Edit Profile information</h5>
                 </div>
                 <div class="modal-body">
-                    <form class="form" action="#" th:action="@{/updateUser}" th:object="${user}" method="post">
-                        <input type="text" class="form-control form-control-sm" id="userName" th:value="${userName}">   
+                    <form class="form" action="#" th:action="@{/updateUser}" th:object="${user}" method="POST">
+
+                        <!-- Hidden Fields -->
+                        <input type="text" class="form-control form-control-sm" id="password" th:field="*{password}" th:value="${user.password}" hidden>
+                        <input type="text" class="form-control form-control-sm" id="userType" th:field="*{userType}" th:value="${user.userType}" hidden>
+                        <input type="text" class="form-control form-control-sm" id="userID" th:field="*{userID}" th:value="${user.userID}" hidden>   
+                        
                         <div class="form-group row">
                             <div class="col-md-4 pt-2 d-flex justify-content-between mr-0 pr-0">
                                 <h6> User Name </h6> 
                                 <h6> : </h6>    
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control form-control-sm" id="userName" th:value="${userName}" required>    
+                                <input type="text" class="form-control form-control-sm" id="userName" th:field="*{userName}" th:value="${user.userName}" required>    
                             </div>
                         </div>
                         <div class="form-group row">
@@ -154,7 +159,7 @@
                                 <h6> : </h6>    
                             </div>
                             <div class="col-md-8">
-                                <input type="email" class="form-control form-control-sm" id="email" th:value="${userMail}" required>    
+                                <input type="email" class="form-control form-control-sm" id="email" th:field="*{email}" th:value="${user.email}" required>    
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">

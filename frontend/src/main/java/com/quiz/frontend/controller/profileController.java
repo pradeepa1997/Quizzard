@@ -16,11 +16,16 @@ public class profileController {
         final String url = "http://localhost:8081/api/users/" + id;
         final RestTemplate restTemplate = new RestTemplate();
         final User user = restTemplate.getForObject(url, User.class);
-        
-        model.addAttribute("userName", user.getUserName());
-        model.addAttribute("userMail", user.getEmail());
-        model.addAttribute("userType", user.getUserType());
+        model.addAttribute("user", user);
         return "profile";   
     }
-}
 
+    @PostMapping("/updateUser")
+    public String updateUser(@ModelAttribute final User userData, final Model model) {
+        final String url = "http://localhost:8081/api/users/update";
+        
+        final RestTemplate restTemplate = new RestTemplate();
+        restTemplate.put(url, userData);
+        return ( "redirect:profile/" + userData.getUserID() );
+    }
+}
