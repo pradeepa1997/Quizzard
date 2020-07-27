@@ -1,0 +1,14 @@
+.login-card{
+    position: absolute;
+    background-color: white;
+    height: 400px;
+    width: 400px;
+    margin: auto;
+    margin-top: 100px;
+    margin-left: calc(50% - 200px);
+    border-radius: 20px;
+}
+
+.login-header{
+    text-align: center;
+}

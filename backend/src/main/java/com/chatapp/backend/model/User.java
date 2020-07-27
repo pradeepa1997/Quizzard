@@ -15,7 +15,7 @@ public class User {
     @Column(name="userID") 
     private Integer userID;
     
-    @Column(name="user_name")
+    @Column(name="userName")
     private String userName;
     
     @Column(name="email")
@@ -46,6 +46,7 @@ public class User {
 	public User() {
 	}
 	public String getEmail() {
+
         return email;
     }
     public String getPassword() {
