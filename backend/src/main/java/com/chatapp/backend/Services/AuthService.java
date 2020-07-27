@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 import javax.transaction.Transactional;
 
-import com.chatapp.backend.exceptions.EtAuthException;
+import com.chatapp.exceptions.EtAuthException;
 import com.chatapp.backend.model.User;
 import com.chatapp.backend.repository.AuthRepository;
 

@@ -1,6 +1,6 @@
 package com.chatapp.backend.repository;
 
-import com.chatapp.backend.exceptions.EtAuthException;
+import com.chatapp.exceptions.EtAuthException;
 import com.chatapp.backend.model.User;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -18,7 +18,7 @@ public class AuthRepository {
 
     private static final String SQL_FIND_BY_USER_ID = "SELECT * FROM USER WHERE USER_ID = ?";
 
-    private static final String SQL_FIND_BY_EMAIL = "SELECT user_id,username , password , email , token , is_verified FROM USER WHERE EMAIL = ?";
+    private static final String SQL_FIND_BY_EMAIL = "SELECT * FROM USER WHERE EMAIL = ?";
 
     private static final String SQL_VERIFY_EMAIL = "UPDATE USER SET is_verified = true WHERE email = ?";
 
@@ -30,7 +30,6 @@ public class AuthRepository {
     public void create(String username, String email, String password) throws EtAuthException {
         String hashedPass = BCrypt.hashpw(password, BCrypt.gensalt(10));
         try{
-            System.out.println(9000);
             jdbcTemplate.update(SQL_INSERT,username,email, hashedPass,null,false,"user");
             return;
         }catch(Exception e){
@@ -39,20 +38,20 @@ public class AuthRepository {
     }
 
     public User findByEmailAndPassword(String email, String password) throws EtAuthException {
-        try{
             User user = jdbcTemplate.queryForObject(SQL_FIND_BY_EMAIL, new Object[]{email} , userRowMapper);
-            if(!BCrypt.checkpw(password, user.getPassword())){
-                throw new EtAuthException("invalid email/password");
-            }else{
-                if(user.getIsVerified()){
-                    return user;
+            if(user.toString() != null){
+                if(!BCrypt.checkpw(password, user.getPassword())){
+                    throw new EtAuthException("invalid email/password");
                 }else{
-                    throw new EtAuthException("email not verified");
-                }    
+                    if(user.getIsVerified()){
+                        return user;
+                    }else{
+                        throw new EtAuthException("email not verified");
+                    }    
+                }
+            }else{
+                throw new EtAuthException("invalid credentials");
             }
-        }catch(EmptyResultDataAccessException e){
-            throw new EtAuthException("invalid email/password");
-        }
     }
 
     public Integer getCountByEmail(String email) {
@@ -74,11 +73,11 @@ public class AuthRepository {
 
     private RowMapper<User> userRowMapper = ((rs , rowNum) -> {
         return new User(
-            rs.getInt("user_id"),
-            rs.getString("userName"),
+            rs.getInt("userID"),
+            rs.getString("user_name"),
             rs.getString("email"),
             rs.getString("password"),
-            rs.getString("userType"),
+            rs.getString("user_type"),
             rs.getString("token"),
             rs.getBoolean("is_verified")
             );

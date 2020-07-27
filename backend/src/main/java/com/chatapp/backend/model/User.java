@@ -33,8 +33,15 @@ public class User {
     @Column(name="is_verified")
     private Boolean is_verified;
 
-    public User(int int1, String string, String string2, String string3, String string4, String string5,
-			boolean boolean1) {
+    public User(int userID, String username, String email, String password, String userType, String token,
+			boolean is_verified) {
+                this.userID = userID;
+                this.userName = username;
+                this.email = email;
+                this.password = password;
+                this.userType = userType;
+                this.token = token;
+                this.is_verified = is_verified;
 	}
 	public User() {
 	}
