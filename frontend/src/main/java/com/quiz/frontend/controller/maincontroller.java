@@ -21,11 +21,6 @@ public class maincontroller {
         return "home";
     }
 
-    @RequestMapping(value = "/login")
-    public String login(final Model model) {
-        return "login";
-    }
-
     @RequestMapping(value = "/quiz")
     public String quiz(final Model model) {
         return "quiz";

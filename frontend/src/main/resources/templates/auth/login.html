@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <title> Quizzard </title>
+</head>
+
+<body>
+
+    <div class="container-fluid login-container" style="height: 100vh;background-color: #223;">
+        <div class="col login-content">
+            <div class="login-header">LOGIN</div>
+            <div class="row px-3"> <label class="mb-1">
+                <h6 class="mb-0 text-sm">Email Address</h6>
+            </label> <input class="mb-4" type="text" name="email" placeholder="Enter a valid email address"> </div>
+            <div class="row px-3"> <label class="mb-1">
+                <h6 class="mb-0 text-sm">Password</h6>
+            </label> <input type="password" name="password" placeholder="Enter password"> </div>
+            <div class="row px-3 mb-4">
+                <a href="/forgotPassword" class="ml-auto mb-0 text-sm">Forgot Password?</a>
+            </div>
+            <div class="row mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">Login</button> </div>
+            <div class="row mb-4 px-3"> <small class="font-weight-bold">Don't have an account ? <a  href="/register"class="text-register ">Register</a></small> </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

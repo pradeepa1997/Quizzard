@@ -89,7 +89,7 @@ public class AuthController {
                 }
             }
             catch (JwtException ex) {  
-                System.out.println(ex.getMessage());
+                map.put("message", ex.getMessage());
             }
             // }
         }catch(Exception e){
@@ -132,7 +132,7 @@ public class AuthController {
                             .setSigningKey(Constants.API_SECRET_KEY)                    
                             .parseClaimsJws(token);
             if(authService.verifyMail(jwt.getBody().get("email").toString())){
-                map.put("message", "valid password reset link");
+                map.put("message", jwt.getBody().get("email").toString());
             }else{
                 map.put("message", "invalid password reset link");
             }
