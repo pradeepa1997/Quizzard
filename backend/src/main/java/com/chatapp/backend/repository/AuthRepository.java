@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class AuthRepository {
-    private static final String SQL_INSERT = "INSERT INTO USER(user_name ,email, password , token , is_verified , user_type) VALUES(?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO USER(user_name ,email, password , is_verified , user_type) VALUES(?,?,?,?,?)";
 
     private static final String SQL_COUNT_BY_EMAIL = "SELECT COUNT(*) FROM USER WHERE EMAIL = ?";
 
@@ -21,7 +21,7 @@ public class AuthRepository {
 
     private static final String SQL_VERIFY_EMAIL = "UPDATE USER SET is_verified = true WHERE email = ?";
 
-    private static final String SQL_FORGOT_PASSWORD = "UPDATE USER SET token = ? WHERE email = ?";
+    private static final String SQL_RESET_PASSWORD = "UPDATE USER SET password = ? WHERE email = ?";
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -29,7 +29,7 @@ public class AuthRepository {
     public void create(String username, String email, String password) throws EtAuthException {
         String hashedPass = BCrypt.hashpw(password, BCrypt.gensalt(10));
         try{
-            jdbcTemplate.update(SQL_INSERT,username,email, hashedPass,null,false,"user");
+            jdbcTemplate.update(SQL_INSERT,username,email, hashedPass,false,"user");
             return;
         }catch(Exception e){
             throw new EtAuthException("invalid details");
@@ -65,8 +65,8 @@ public class AuthRepository {
         jdbcTemplate.update(SQL_VERIFY_EMAIL,email);
     }
 
-    public void forgotPassword(String email , String token) throws EtAuthException {
-        jdbcTemplate.update(SQL_FORGOT_PASSWORD,token,email);
+    public void resetPassword(String email , String password) throws EtAuthException {
+        jdbcTemplate.update(SQL_RESET_PASSWORD,password,email);
 
     }
 

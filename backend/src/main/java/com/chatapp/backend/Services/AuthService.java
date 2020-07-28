@@ -59,9 +59,7 @@ public class AuthService {
         }
         Integer count = authRepository.getCountByEmail(email);
         if(count > 0){
-            authRepository.forgotPassword( email , token);
-            return "password reset link sent";
-            
+            return "password reset link sent";   
         }else{
             throw new EtAuthException("No user found");
         }
