@@ -70,10 +70,12 @@ CREATE TABLE `quiztry` (
 --
 
 CREATE TABLE `user` (
-  `userID` int(10) NOT NULL,
-  `userName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userID` int(10) NOT NULL AUTO,
+  -- `userName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci,
+  `is_verified` boolean COLLATE utf8mb4_unicode_ci NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
