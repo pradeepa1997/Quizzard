@@ -4,11 +4,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import com.chatapp.backend.Constants;
 import com.chatapp.backend.Services.AuthService;
 import com.chatapp.backend.Services.NotificationService;
-import com.chatapp.exceptions.EtAuthException;
 import com.chatapp.backend.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -44,7 +43,7 @@ public class AuthController {
 
         long timeStamp = System.currentTimeMillis();
         String token = Jwts.builder().signWith(SignatureAlgorithm.HS256, Constants.API_SECRET_KEY)
-                .setIssuedAt(new Date(timeStamp)).setExpiration(new Date(timeStamp)).claim("username", username)
+                .setIssuedAt(new Date(timeStamp)).claim("username", username)
                 .claim("email", email).compact();
 
         Map<String, String> map = new HashMap<>();
@@ -79,19 +78,20 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> verifyMail(@PathVariable String token) {
         Map<String, String> map = new HashMap<>();
         try {
-            // Jws<Claims> jwt = Jwts.parser()
-            // .setSigningKey(Constants.API_SECRET_KEY)
-            // .parseClaimsJws(token);
-            Claims claims = Jwts.parser()
-                            .setSigningKey(Constants.API_SECRET_KEY)
-                            .parseClaimsJws(token)
-                            .getBody();
-            System.out.println(claims);
-            if(authService.verifyMail(claims.get("email").toString())){
-                map.put("message", "email verified successfully");
-            }else{
-                map.put("message", "Email verification x failed");
+            System.out.println(token);
+            // Claims claims = Jwts.parser().setSigningKey(Constants.API_SECRET_KEY).parseClaimsJws(token).getBody();
+            try {
+                Jws<Claims>  jws = Jwts.parser().setSigningKey(Constants.API_SECRET_KEY).parseClaimsJws(token); 
+                if(authService.verifyMail(jws.getBody().get("email").toString())){
+                    map.put("message", "email verified successfully");
+                }else{
+                    map.put("message", "Email verification failed");
+                }
             }
+            catch (JwtException ex) {  
+                System.out.println(ex.getMessage());
+            }
+            // }
         }catch(Exception e){
              map.put("message", "Email verification failed"); 
         }
