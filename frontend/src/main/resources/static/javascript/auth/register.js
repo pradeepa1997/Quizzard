@@ -19,6 +19,9 @@ $(document).ready(
             url : "http://localhost:8081/auth/register",
             data : JSON.stringify(formData),
             dataType : "json",
+            xhrFields: {
+                withCredentials: true
+            },
             success : function(res){
                 console.log(res);
             },
