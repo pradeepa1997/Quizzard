@@ -1,26 +1,19 @@
 const email = document.getElementById('email');
-const password = document.getElementById('password');
-const form = document.getElementById('login-form');
+const form = document.getElementById('form');
 const EmailError = document.getElementById('email-error');
-const PasswordError = document.getElementById('password-error')
 
 form.addEventListener('submit', (e) => {
     let Emailmessages = [];
-    let Passwordmessages = [];
 
     if (email.value === '' || email.value === null) {
         Emailmessages.push('Email is required')
     } else if (!validateEmail(email.value)) {
         Emailmessages.push('Invalid email format')
     }
-    if (password.value === '' || password.value === null) {
-        Passwordmessages.push('Password is required')
-    }
 
-    if (Emailmessages.length > 0 || Passwordmessages.length > 0) {
+    if (Emailmessages.length > 0) {
         e.preventDefault();
         EmailError.innerText = Emailmessages.join(',');
-        PasswordError.innerText = Passwordmessages.join(',');
     }
 
 })
