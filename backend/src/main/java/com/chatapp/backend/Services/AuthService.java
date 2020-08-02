@@ -64,4 +64,13 @@ public class AuthService {
             throw new EtAuthException("No user found");
         }
     }
+
+    public String ResetPassword(String email , String password) throws EtAuthException {
+        Integer count = authRepository.resetPassword(email , password);
+        if(count > 0){
+            return "password reset";   
+        }else{
+            throw new EtAuthException("error");
+        }
+    }
 }

@@ -45,7 +45,7 @@ public class AuthRepository {
                     if(user.getIsVerified()){
                         return user;
                     }else{
-                        throw new EtAuthException("email not verified");
+                        throw new EtAuthException("email is not verified , please check your email for verification link");
                     }    
                 }
             }else{
@@ -65,10 +65,17 @@ public class AuthRepository {
         jdbcTemplate.update(SQL_VERIFY_EMAIL,email);
     }
 
-    public void resetPassword(String email , String password) throws EtAuthException {
-        jdbcTemplate.update(SQL_RESET_PASSWORD,password,email);
-
+    public Integer resetPassword(String email , String password) throws EtAuthException {
+        String hashedPass = BCrypt.hashpw(password, BCrypt.gensalt(10));
+        try{
+            jdbcTemplate.update(SQL_RESET_PASSWORD,hashedPass,email);
+            return 1;
+        }
+        catch(Exception e){
+            return 0 ;
+        }
     }
+    
 
     private RowMapper<User> userRowMapper = ((rs , rowNum) -> {
         return new User(
