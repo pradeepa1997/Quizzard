@@ -23,7 +23,7 @@ public class NotificationService {
         mail.setTo(user.getEmail());
         mail.setFrom("devquizzard@gmail.com");
         mail.setSubject("registered successfuly");
-        mail.setText("proceed here to verify email address" + "<a>http://localhost:8081/auth/verifymail/" + user.getToken() + "</a>") ;
+        mail.setText("proceed here to verify email address" + "<a>http://localhost:8080/verifymail/" + user.getToken() + "</a>") ;
         try{
             javaMailSender.send(mail);
         }catch(Exception e){
@@ -37,7 +37,7 @@ public class NotificationService {
         mail.setTo(user.getEmail());
         mail.setFrom("devquizzard@gmail.com");
         mail.setSubject("Password reset link");
-        mail.setText("proceed here to reset password" + "<a>http://localhost:8081/auth/resetPassword/" + user.getToken() + "</a>") ;
+        mail.setText("proceed here to reset password" + "<a>http://localhost:8080/resetPassword/" + user.getToken() + "</a>") ;
 
         javaMailSender.send(mail);
     }

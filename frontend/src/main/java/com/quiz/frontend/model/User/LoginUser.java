@@ -1,23 +1,12 @@
 package com.quiz.frontend.model.User;
 
 
-public class RegisterUser{
-    private String userName ;
+public class LoginUser{
     private String email ;
     private String password ;
 
     public void User() {
         
-    }
-
-
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(final String userName) {
-        this.userName = userName;
     }
 
     public String getEmail() {
@@ -28,7 +17,6 @@ public class RegisterUser{
         this.email = email;
     }
 
-
     public String getPassword() {
         return password;
     }
@@ -36,5 +24,4 @@ public class RegisterUser{
     public void setPassword(final String password) {
         this.password = password;
     }
-
 }

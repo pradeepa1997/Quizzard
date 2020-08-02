@@ -8,6 +8,7 @@ import com.chatapp.backend.Constants;
 import com.chatapp.backend.Services.AuthService;
 import com.chatapp.backend.Services.NotificationService;
 import com.chatapp.backend.model.User;
+import com.chatapp.exceptions.EtAuthException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,7 +38,7 @@ public class AuthController {
 
     @PostMapping(value = "/register")
     public ResponseEntity<Map<String, String>> registerUser(@RequestBody Map<String, Object> userMap) {
-        String username = (String) userMap.get("username");
+        String username = (String) userMap.get("userName");
         String email = (String) userMap.get("email");
         String password = (String) userMap.get("password");
 
@@ -68,6 +69,11 @@ public class AuthController {
             User user = authService.validateUser(email, password);
             return new ResponseEntity<>(generateJWTToken(user), HttpStatus.OK);
         }catch(Exception e){
+            if(e.getMessage().matches("Incorrect result size: expected 1, actual 0")){
+                Map<String , String > map = new HashMap<>();
+                map.put("message", "invalid data");
+                return new ResponseEntity<>(map, HttpStatus.OK);
+            }
             Map<String , String > map = new HashMap<>();
             map.put("message", e.getMessage());
             return new ResponseEntity<>(map, HttpStatus.OK);
@@ -78,25 +84,25 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> verifyMail(@PathVariable String token) {
         Map<String, String> map = new HashMap<>();
         try {
-            System.out.println(token);
-            // Claims claims = Jwts.parser().setSigningKey(Constants.API_SECRET_KEY).parseClaimsJws(token).getBody();
             try {
                 Jws<Claims>  jws = Jwts.parser().setSigningKey(Constants.API_SECRET_KEY).parseClaimsJws(token); 
                 if(authService.verifyMail(jws.getBody().get("email").toString())){
                     map.put("message", "email verified successfully");
+                    return new ResponseEntity<>(map , HttpStatus.OK);
                 }else{
                     map.put("message", "Email verification failed");
+                    return new ResponseEntity<>(map , HttpStatus.OK);
                 }
             }
             catch (JwtException ex) {  
                 map.put("message", ex.getMessage());
+                return new ResponseEntity<>(map , HttpStatus.OK);
             }
             // }
         }catch(Exception e){
              map.put("message", "Email verification failed"); 
+             return new ResponseEntity<>(map , HttpStatus.OK);
         }
-            
-        return new ResponseEntity<>(map , HttpStatus.OK);
     }
 
     @PostMapping("/forgotPassword")
@@ -122,11 +128,33 @@ public class AuthController {
         return new ResponseEntity<>(map , HttpStatus.OK);
     }
 
-    @GetMapping("/resetPassword/{token}")
-    public ResponseEntity<Map<String , String>> resetPassword( @PathVariable String token){
+    @PostMapping("/resetPassword/{token}")
+    public ResponseEntity<Map<String , String>> resetPassword(@RequestBody Map<String , Object> userMap, @PathVariable String token){
         Map<String , String> map = new HashMap<>();
-        // String password = (String) userMap.get("password");
+        String password = (String) userMap.get("password");
+        try{
+            Jws<Claims> jwt = Jwts.parser()                  
+                            .setSigningKey(Constants.API_SECRET_KEY)                    
+                            .parseClaimsJws(token);
+            if(authService.verifyMail(jwt.getBody().get("email").toString())){
+                try{
+                    authService.ResetPassword(jwt.getBody().get("email").toString() , password);
+                    map.put("message", "Password reset");
+                }catch(Exception e){
+                    map.put("message", e.getMessage().toString());
+                }
+                
+            }else{
+                map.put("message", "invalid password reset link");
+            }
+        }catch(Exception e){ map.put("message", "invalid password reset link"); }
+            
+        return new ResponseEntity<>(map , HttpStatus.OK);
+    }
 
+    @GetMapping("/verifyPasswordResetToken/{token}")
+    public ResponseEntity<Map<String , String>> verifyPasswordResetToken(@PathVariable String token){
+        Map<String , String> map = new HashMap<>();
         try{
             Jws<Claims> jwt = Jwts.parser()                  
                             .setSigningKey(Constants.API_SECRET_KEY)                    

@@ -15,6 +15,8 @@ form.addEventListener('submit', (e) => {
     }
     if (password.value === '' || password.value === null) {
         Passwordmessages.push('Password is required')
+    }else if( password.value.length < 6){
+        Passwordmessages.push('Invalid password')
     }
 
     if (Emailmessages.length > 0 || Passwordmessages.length > 0) {
