@@ -138,7 +138,6 @@ public class authController {
             String resBody = restTemplate.postForObject(url, user, String.class);
             JSONObject res = new JSONObject(resBody);
             try{
-                System.out.println(res.get("token"));
                 model.addAttribute("user", new LoginUser());
                 model.addAttribute("success", true);
                 model.addAttribute("successmessage", "registered successfully ! your account verification link has been sent to your email");
@@ -168,7 +167,7 @@ public class authController {
             try{
                 System.out.println(res.get("token"));
                 model.addAttribute("user", new LoginUser());
-                return "auth/login";
+                return "/home";
             }catch(Exception e){
                 System.out.println(res.get("message"));
                 model.addAttribute("user", new LoginUser());

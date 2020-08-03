@@ -23,6 +23,10 @@ public class AuthService {
         return authRepository.findByEmailAndPassword(email, password);
     }
 
+    public User getUser(String email) throws EtAuthException {
+        return authRepository.findByEmail(email);
+    }
+
     public String registeUser(String username, String email, String password) throws EtAuthException {
         Pattern pattern = Pattern.compile("^(.+)@(.+)$");
         if(email != null ) email = email.toLowerCase();
