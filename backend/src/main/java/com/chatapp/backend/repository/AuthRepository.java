@@ -53,6 +53,15 @@ public class AuthRepository {
             }
     }
 
+    public User findByEmail(String email) throws EtAuthException {
+        User user = jdbcTemplate.queryForObject(SQL_FIND_BY_EMAIL, new Object[]{email} , userRowMapper);
+        if(user.toString() != null){
+            return user;
+        }else{
+            throw new EtAuthException("invalid credentials");
+        }
+    }
+
     public Integer getCountByEmail(String email) {
         return jdbcTemplate.queryForObject(SQL_COUNT_BY_EMAIL, new Object[]{email} , Integer.class);
     }

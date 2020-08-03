@@ -8,7 +8,6 @@ import com.chatapp.backend.Constants;
 import com.chatapp.backend.Services.AuthService;
 import com.chatapp.backend.Services.NotificationService;
 import com.chatapp.backend.model.User;
-import com.chatapp.exceptions.EtAuthException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
