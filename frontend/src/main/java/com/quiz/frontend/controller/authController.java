@@ -24,6 +24,7 @@ public class authController {
         model.addAttribute("user", new LoginUser());
         return "auth/login";
     }
+    
     @GetMapping(value = "/register")
     public String register(final Model model) {
         model.addAttribute("user", new RegisterUser());
@@ -165,7 +166,8 @@ public class authController {
             String resBody = restTemplate.postForObject(url, user, String.class);
             JSONObject res = new JSONObject(resBody);
             try{
-                System.out.println(res.get("token"));
+                System.out.println("\n\n\n\n\n\n\n" + res.get("token") + "\n\n\n\n\n\n\n");
+                System.out.println("\n\n\n\n\n\n\n" + user + "\n\n\n\n\n\n\n");
                 model.addAttribute("user", new LoginUser());
                 return "/home";
             }catch(Exception e){

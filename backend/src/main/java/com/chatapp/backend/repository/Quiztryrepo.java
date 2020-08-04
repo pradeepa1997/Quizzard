@@ -4,5 +4,5 @@ import com.chatapp.backend.model.Quiztry;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface Quiztryrepo extends JpaRepository<Quiztry,Integer> {
-       
+	List<Quiztry> findByuserID(Integer id);  
 }

@@ -1,5 +1,6 @@
 package com.chatapp.backend.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,10 @@ import java.util.Optional;
 import com.chatapp.backend.Constants;
 import com.chatapp.backend.Services.AuthService;
 import com.chatapp.backend.model.User;
+import com.chatapp.backend.model.Quiz;
+import com.chatapp.backend.model.Quiztry;
+import com.chatapp.backend.repository.Quizrepo;
+import com.chatapp.backend.repository.Quiztryrepo;
 import com.chatapp.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +32,12 @@ public class UserController {
     UserRepository usersrepo;
 
     @Autowired
+    Quizrepo quizrepo;
+
+    @Autowired
+    Quiztryrepo quiztryrepo;
+
+    @Autowired
     AuthService authService;
 
     @GetMapping(value = "/all")
@@ -35,8 +46,19 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}")
-    public Optional<User> getByID(@PathVariable final Integer id) {
-        return usersrepo.findById(id);
+    public ArrayList<Object> getByID(@PathVariable final Integer id) {
+        Optional<User> user = usersrepo.findById(id);
+        List<Quiz> quiz = quizrepo.findBycreatorID(id);
+        List<Quiztry> quiztry = quiztryrepo.findByuserID(id);
+        int quizSize = quiz.size();
+        int quiztrySize = quiztry.size();
+        ArrayList<Object> list =new ArrayList<Object>();
+        list.add(user);
+        list.add(quiz);
+        list.add(quizSize);
+        list.add(quiztry);
+        list.add(quiztrySize);
+        return list;
     }
 
     @PostMapping(value = "/add")
