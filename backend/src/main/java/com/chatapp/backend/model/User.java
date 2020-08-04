@@ -27,7 +27,8 @@ public class User {
     @Column(name="userType")
     private String userType;
 
-    public String getEmail() {
+
+    public String getEmail(){
         return email;
     }
     public String getPassword() {
