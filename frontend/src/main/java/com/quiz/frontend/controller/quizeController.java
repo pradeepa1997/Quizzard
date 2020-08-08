@@ -20,14 +20,10 @@ public class quizeController {
         // getEmployees();
         model.addAttribute("quiz", new QuizPost());
         model.addAttribute("error", false);
-        return "addquiz";   
+        return "addquiz"; 
     }
-<<<<<<< HEAD
-   
-=======
-    
 
->>>>>>> cfbbaf4a77e57c2d04e8c89e1cc5b7d048e64ab8
+    
     @PostMapping("/addquiz")
     public String addQuizSubmit(@ModelAttribute QuizPost quizPost,final Model model){
         
