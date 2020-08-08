@@ -27,6 +27,24 @@ public class User {
     @Column(name="userType")
     private String userType;
 
+    @Column(name="token")
+    private String token;
+
+    @Column(name="is_verified")
+    private Boolean is_verified;
+
+    public User(int userID, String username, String email, String password, String userType, String token,boolean is_verified) {
+        this.userID = userID;
+        this.userName = username;
+        this.email = email;
+        this.password = password;
+        this.userType = userType;
+        this.token = token;
+        this.is_verified = is_verified;
+	}
+	public User() {
+	}
+    
     public String getEmail() {
         return email;
     }
@@ -42,6 +60,12 @@ public class User {
     public String getUserType() {
         return userType;
     }
+    public String getToken() {
+        return token;
+    }
+    public Boolean getIsVerified() {
+        return is_verified;
+    }
     public void setEmail(final String email) {
         this.email = email;
     }
@@ -56,6 +80,12 @@ public class User {
     }
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+    public void setToken(String token){
+        this.token = token;
+    }
+    public void setIsVerified(Boolean is_verified){
+        this.is_verified = is_verified;
     }
 
     // public Users(String name,String email,String password){

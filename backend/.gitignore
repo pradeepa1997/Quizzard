@@ -34,3 +34,6 @@ src/main/resources/application.properties
 
 ### VS Code ###
 .vscode/
+
+pom.xml
+/main/resources/application.properties

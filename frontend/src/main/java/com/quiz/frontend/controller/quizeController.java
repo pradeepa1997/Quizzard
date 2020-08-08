@@ -22,8 +22,8 @@ public class quizeController {
         model.addAttribute("error", false);
         return "addquiz"; 
     }
-
     
+
     @PostMapping("/addquiz")
     public String addQuizSubmit(@ModelAttribute QuizPost quizPost,final Model model){
         

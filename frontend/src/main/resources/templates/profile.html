@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d43d952765.js" crossorigin="anonymous"></script>
-    <title> Quizzard - Home </title>
+    <title> Quizzard - Profile </title>
   </head>
   <body class="body-main">
-    <div class="container-fluid p-0 mr-0" >
+    <div class="container-fluid p-0 mr-0">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand pr-5" href="/">
-                    <img src="images/logo2.png" alt="logo" style="max-width: 80px;">
+                    <img src="../images/logo2.png" alt="logo" style="max-width: 80px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -36,8 +36,8 @@
                     <ul class="navbar-nav ml-auto ">
                         <li class="nav-item active pr-3">
                             <div class="row">
-                                <img class="rounded-circle" style="max-width: 40px;height:40px"src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="user">
-                                <a class="nav-link" href="#"> <strong> Sample User </strong> </a>    
+                                <img class="rounded-circle" style="max-width: 30px;height:30px;margin-top: 7px;"src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="user">
+                                <a class="nav-link" href="/profile/1"> <strong  th:text="${user.userName}">  </strong> </a>    
                             </div>
                         </li>
                     </ul>
@@ -48,40 +48,16 @@
             <div class="col-md-9 ">
                 <h5 class="text-white px-3 pt-3"> Your Quizes </h5>
                 <div class="row px-3">
+                    <script>
+                    // for(var i = 0; i < $quizCount ; i++) {
+                        console.log("${quizCount}");
+                        // document.body.innerHTML += '<div class="item"><div class="portfolio-item"><a href="img/portfolio-item-' + i + '.jpg" data-lightbox="image-' + i + '"><img src="img/portfolio-item-' + i + '.jpg"></a></div></div>'
+                    //  }
+                    </script>
                     <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
                         <div class="card shadow  quiz-hover">
                             <div class="card header">
-                                <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                            </div>
-                            <div class="card-body bg info">
-                                <h6 class="text-center m-0"> Title Comes here</h6>
-                            </div>
-                        </div>      
-                    </div>
-                    <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                        <div class="card shadow  quiz-hover">
-                            <div class="card header">
-                                <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                            </div>
-                            <div class="card-body bg info">
-                                <h6 class="text-center m-0"> Title Comes here</h6>
-                            </div>
-                        </div>      
-                    </div>
-                    <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                        <div class="card shadow  quiz-hover">
-                            <div class="card header">
-                                <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                            </div>
-                            <div class="card-body bg info">
-                                <h6 class="text-center m-0"> Title Comes here</h6>
-                            </div>
-                        </div>      
-                    </div>
-                    <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                        <div class="card shadow  quiz-hover">
-                            <div class="card header">
-                                <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
+                                <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
                             </div>
                             <div class="card-body bg info">
                                 <h6 class="text-center m-0"> Title Comes here</h6>
@@ -94,37 +70,7 @@
                     <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
                         <div class="card shadow  quiz-hover">
                             <div class="card header">
-                                <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                            </div>
-                            <div class="card-body bg info">
-                                <h6 class="text-center m-0"> Title Comes here</h6>
-                            </div>
-                        </div>      
-                    </div>
-                    <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                        <div class="card shadow  quiz-hover">
-                            <div class="card header">
-                                <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                            </div>
-                            <div class="card-body bg info">
-                                <h6 class="text-center m-0"> Title Comes here</h6>
-                            </div>
-                        </div>      
-                    </div>
-                    <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                        <div class="card shadow  quiz-hover">
-                            <div class="card header">
-                                <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                            </div>
-                            <div class="card-body bg info">
-                                <h6 class="text-center m-0"> Title Comes here</h6>
-                            </div>
-                        </div>      
-                    </div>
-                    <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                        <div class="card shadow  quiz-hover">
-                            <div class="card header">
-                                <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
+                                <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
                             </div>
                             <div class="card-body bg info">
                                 <h6 class="text-center m-0"> Title Comes here</h6>
@@ -145,12 +91,18 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="border-bottom pb-2">
-                                    <h5> <strong> Raveesha Fernando </strong></h5>
+                                    <h5>
+                                        <strong th:text="${user.userName}"></strong>
+                                    </h5>
                                 </div>
                                 <div class="text-muted py-2">
-                                    1  Quiz(es) Posted
-                                    <br>
-                                    3 Quiz(es) Answered    
+                                    <h6 th:text="${user.email}"></h6>
+                                    <div class="row pl-3">
+                                        <p th:text="${quizCount}"></p> <p>&ensp;Quiz(es) Posted</p>
+                                    </div>
+                                    <div class="row pl-3">
+                                        <p th:text="${tryCount}"></p> <p>&ensp;Quiz(es) Answered</p>
+                                    </div>    
                                 </div>
                             </div>
                         </div>
@@ -176,7 +128,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
+                    <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
                 </div>
                 <div class="modal-body">
                     <h6 class="text-center m-0"> Title Comes here</h6>
@@ -196,11 +148,36 @@
                    <h5 class="text-white my-0"> Edit Profile information</h5>
                 </div>
                 <div class="modal-body">
-                    <h6 class="text-center m-0"> Title Comes here</h6>
-                </div>
-                <div class="modal-footer">
-                    <a href="/quiz" type="button" class="btn btn-primary"> Start Quiz </a>
-                    <button type="button" class="btn btn-danger " data-dismiss="modal">Close</button>
+                    <!-- <form class="form" action="#" th:action="@{/updateUser}" th:object="${Object}" method="POST">
+
+                        <input type="text" id="password" th:field="*{password}" th:value="${user.password}" hidden>
+                        <input type="text" id="userType" th:field="*{userType}" th:value="${user.userType}" hidden>
+                        <input type="text" id="userID" th:field="*{userID}" th:value="${user.userID}" hidden>   
+                        <input id="isVerified" th:field="*{isVerified}" th:value="${user.isVerified}" hidden>   
+                        <input type="text" id="token" th:field="*{token}" th:value="${user.token}" hidden>   
+                        
+                        <div class="form-group row">
+                            <div class="col-md-4 pt-2 d-flex justify-content-between mr-0 pr-0">
+                                <h6> User Name </h6> 
+                                <h6> : </h6>    
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control form-control-sm" id="userName" th:field="*{userName}" th:value="${user.userName}" required>    
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4 pt-2 d-flex justify-content-between mr-0 pr-0">
+                                <h6> Email address </h6> 
+                                <h6> : </h6>    
+                            </div>
+                            <div class="col-md-8">
+                                <input type="email" class="form-control form-control-sm" id="email" th:field="*{email}" th:value="${user.email}" required>    
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Upade User Details </button>
+                        </div>
+                    </form> -->
                 </div>
             </div>
         </div>
