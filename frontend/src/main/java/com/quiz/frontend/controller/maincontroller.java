@@ -16,10 +16,10 @@ public class maincontroller {
         return "index";
     }
 
-    @RequestMapping(value = "/home")
-    public String home(final Model model) {
-        return "home";
-    }
+    // @RequestMapping(value = "/home")
+    // public String home(final Model model) {
+    //     return "home";
+    // }
 
     @RequestMapping(value = "/quiz")
     public String quiz(final Model model) {

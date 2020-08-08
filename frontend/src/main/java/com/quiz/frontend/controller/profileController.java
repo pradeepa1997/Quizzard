@@ -1,13 +1,10 @@
 package com.quiz.frontend.controller;
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.client.RestTemplate;
+
 import org.springframework.ui.Model;
-
-import java.lang.reflect.Array;
-
 import com.quiz.frontend.model.User.User;
 
 @Controller
