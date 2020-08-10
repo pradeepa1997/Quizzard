@@ -48,34 +48,33 @@
             <div class="col-md-9 ">
                 <h5 class="text-white px-3 pt-3"> Your Quizes </h5>
                 <div class="row px-3">
-                    <script>
-                    // for(var i = 0; i < $quizCount ; i++) {
-                        console.log("${quizCount}");
-                        // document.body.innerHTML += '<div class="item"><div class="portfolio-item"><a href="img/portfolio-item-' + i + '.jpg" data-lightbox="image-' + i + '"><img src="img/portfolio-item-' + i + '.jpg"></a></div></div>'
-                    //  }
-                    </script>
-                    <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                        <div class="card shadow  quiz-hover">
-                            <div class="card header">
-                                <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
-                            </div>
-                            <div class="card-body bg info">
-                                <h6 class="text-center m-0"> Title Comes here</h6>
-                            </div>
-                        </div>      
+                    <div  class="col-md-3" th:each="quizlist : ${quiz}">
+                        <div data-toggle="modal" data-target="#quiz-card">
+                            <div class="card shadow  quiz-hover">
+                                <div class="card header">
+                                    <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
+                                </div>
+                                <div class="card-body bg info">
+                                    <h6 class="text-center m-0"  th:text="${quizlist.quizName}"></h6>
+                                </div>
+                            </div> 
+                        </div>     
                     </div>
                 </div>
                 <h5 class="text-white px-3 pt-3"> Answered Quizes </h5>
                 <div class="row px-3">
-                    <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                        <div class="card shadow  quiz-hover">
-                            <div class="card header">
-                                <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
-                            </div>
-                            <div class="card-body bg info">
-                                <h6 class="text-center m-0"> Title Comes here</h6>
-                            </div>
-                        </div>      
+                    <div th:each="trylist : ${try}">
+                        <div class="col-md-3 p-3">
+                            <div class="card shadow  quiz-hover">
+                                <div class="card header">
+                                    <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
+                                </div>
+                                <div class="card-body bg info">
+                                    <h6 class="text-center m-0"  th:text="${try.quizID}"></h6>
+                                    <h4 class="text-center m-0"  th:text="${try.marks}"></h4>
+                                </div>
+                            </div> 
+                        </div>     
                     </div>
                 </div>
             </div>

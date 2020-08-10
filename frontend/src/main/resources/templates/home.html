@@ -53,91 +53,19 @@
             </div>
         </div>
         <div class="container pt-2">
-            <h5 class="text-white px-3 pt-3"> Category Here! </h5>
+            <h5 class="text-white px-3 pt-3"> Category </h5>
             <div class="row px-3">
-                <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                    <div class="card shadow  quiz-hover">
-                        <div class="card header">
-                            <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                        </div>
-                        <div class="card-body bg info">
-                            <h5 class="text-center"> Title Comes here</h5>
-                        </div>
-                    </div>      
-                </div>
-                <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                    <div class="card shadow  quiz-hover">
-                        <div class="card header">
-                            <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                        </div>
-                        <div class="card-body bg info">
-                            <h5 class="text-center"> Title Comes here</h5>
-                        </div>
-                    </div>      
-                </div>
-                <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                    <div class="card shadow  quiz-hover">
-                        <div class="card header">
-                            <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                        </div>
-                        <div class="card-body bg info">
-                            <h5 class="text-center"> Title Comes here</h5>
-                        </div>
-                    </div>      
-                </div>
-                <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                    <div class="card shadow  quiz-hover">
-                        <div class="card header">
-                            <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                        </div>
-                        <div class="card-body bg info">
-                            <h5 class="text-center"> Title Comes here</h5>
-                        </div>
-                    </div>      
-                </div>
-            </div>
-
-            <h5 class="text-white px-3 pt-3"> Category Here! </h5>
-            <div class="row px-3">
-                <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                    <div class="card shadow  quiz-hover">
-                        <div class="card header">
-                            <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                        </div>
-                        <div class="card-body bg info">
-                            <h5 class="text-center"> Title Comes here</h5>
-                        </div>
-                    </div>      
-                </div>
-                <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                    <div class="card shadow  quiz-hover">
-                        <div class="card header">
-                            <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                        </div>
-                        <div class="card-body bg info">
-                            <h5 class="text-center"> Title Comes here</h5>
-                        </div>
-                    </div>      
-                </div>
-                <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                    <div class="card shadow  quiz-hover">
-                        <div class="card header">
-                            <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                        </div>
-                        <div class="card-body bg info">
-                            <h5 class="text-center"> Title Comes here</h5>
-                        </div>
-                    </div>      
-                </div>
-                <div class="col-md-3 p-3" data-toggle="modal" data-target="#quiz-card">
-                    <div class="card shadow  quiz-hover">
-                        <div class="card header">
-                            <img src="./images/back2.jpg" style="width:100%;height: auto;" alt="">
-                        </div>
-                        <div class="card-body bg info">
-                            <h5 class="text-center"> Title Comes here</h5>
-                        </div>
-                    </div>      
+                <div  class="col-md-3" th:each="quiz : ${quizList}">
+                    <div data-toggle="modal" data-target="#quiz-card">
+                        <div class="card shadow  quiz-hover">
+                            <div class="card header">
+                                <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
+                            </div>
+                            <div class="card-body bg info">
+                                <h6 class="text-center m-0"  th:text="${quiz.quizName}"></h6>
+                            </div>
+                        </div> 
+                    </div>     
                 </div>
             </div>
 
