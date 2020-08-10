@@ -17,7 +17,7 @@ public class homeController {
         final String url = "http://localhost:8081/api/quiz/all";
         final RestTemplate restTemplate = new RestTemplate();
 
-        final Object quiz = restTemplate.getForObject(url, Object.class);
+        final Quiz[] quiz = restTemplate.getForObject(url, Quiz[].class);
         model.addAttribute("quizList", quiz);
         return "home";
     }  
