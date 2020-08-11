@@ -48,11 +48,45 @@
                 </div>
             </div>
         </nav>
+
+        <div id="wrapper" class="wrapper-content" >
+            <div id="sidebar-wrapper" class="bg-dark">
+                <ul class="sidebar-nav">
+                    <li class="pt-3">
+                        <a href="/admin/users"><i class="fas fa-home pr-2"></i>Dashboard</a>
+                        <hr class="content-center" style="width:75%;background : #555">
+                    </li>
+                    <li>
+                        <a href="/admin/category"><i class="fas fa-chart-bar pr-2"></i>Analysis</a>
+                        <hr class="content-center" style="width:75%;background : #555">
+                    </li>
+                    <li>
+                        <div class="p-3">
+                            <button type="button" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#exampleModalCenter">
+                                <h6 class="pt-2"> <i class="far fa-edit pr-2"></i> write post <h6>
+                            </button>
+                        </div>
+    
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
         <div class="d-flex justify-content-center px-5" style="padding-top: 100px;">
             <div class="col-lg-6">
                 <div class="searchbar shadow">
                     <input class="search_input" type="text" name="" placeholder="Search for a game code...">
                     <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                    <div th:each="users : ${userList}">
+                        <h3 class="text-white" th:text="${users.userName}"></h3>
+                    </div>
+                    <div th:each="quizzes : ${quizList}">
+                        <h3 class="text-white" th:text="${quizzes.quizName}"></h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -162,6 +196,7 @@
                 </div>
             </div>
         </div> -->
+        
     </div>  
   </body>
 </html>

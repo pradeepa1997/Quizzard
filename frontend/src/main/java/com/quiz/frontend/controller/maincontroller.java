@@ -26,8 +26,8 @@ public class maincontroller {
         return "quiz";
     }
 
-    @RequestMapping(value = "/admin")
-    public String admin(final Model model) {
-        return "adminpanel";
-    }
+    // @RequestMapping(value = "/admin/users")
+    // public String admin(final Model model) {
+    //     return "adminpanel";
+    // }
 }
