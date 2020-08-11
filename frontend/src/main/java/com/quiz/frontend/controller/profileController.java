@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.client.RestTemplate;
 
 import org.springframework.ui.Model;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.quiz.frontend.model.Quiz.Quiz;
 import com.quiz.frontend.model.User.User;
 
 @Controller
@@ -19,7 +22,10 @@ public class profileController {
 
         final Object[] obj = restTemplate.getForObject(url, Object[].class );
         
-        model.addAttribute("user", obj[0]);
+        ObjectMapper mapper = new ObjectMapper();
+        User user = mapper.convertValue(obj[0], User.class);
+
+        model.addAttribute("user", user);
         model.addAttribute("quiz", obj[1]);
         model.addAttribute("quizCount", obj[2]);
         model.addAttribute("try", obj[3]);

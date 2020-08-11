@@ -6,23 +6,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.chatapp.backend.Constants;
-import com.chatapp.backend.Services.AuthService;
-import com.chatapp.backend.model.User;
-import com.chatapp.backend.model.Quiz;
-import com.chatapp.backend.model.Quiztry;
-import com.chatapp.backend.repository.Quizrepo;
-import com.chatapp.backend.repository.Quiztryrepo;
-import com.chatapp.backend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
+
+import com.chatapp.backend.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.chatapp.backend.Services.AuthService;
+
+import com.chatapp.backend.repository.Quizrepo;
+import com.chatapp.backend.repository.Quiztryrepo;
+import com.chatapp.backend.repository.UserRepository;
+
+import com.chatapp.backend.model.User;
+import com.chatapp.backend.model.Quiz;
+import com.chatapp.backend.model.Quiztry;
 
 @RestController
 @RequestMapping(value = "/api/users")
@@ -64,7 +65,6 @@ public class UserController {
     @PostMapping(value = "/add")
     public String addNewUser(@RequestBody final User user) {
         System.out.println(user.getEmail());
-
         usersrepo.save(user);
         return "User added"; 
     }
