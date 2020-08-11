@@ -23,7 +23,6 @@ public class quizeController {
         return "addquiz";   
     }
     
-
     @PostMapping("/addquiz")
     public String addQuizSubmit(@ModelAttribute QuizPost quizPost,final Model model){
         
@@ -64,13 +63,14 @@ public class quizeController {
         RestTemplate restTemplate = new RestTemplate();
         String quizid=restTemplate.postForObject(url,question,String.class);
         System.out.println(quizid);
-            model.addAttribute("alert",true);
-            Question temp= new Question();
-            temp.setQuizID(Integer.parseInt(quizid));
-            model.addAttribute("questions",temp);
-            return "question";   
+        model.addAttribute("alert",true);
+        Question temp= new Question();
+        temp.setQuizID(Integer.parseInt(quizid));
+        model.addAttribute("questions",temp);
+        return "question";   
         
     }
+    
 
 
     private static void getEmployees(){

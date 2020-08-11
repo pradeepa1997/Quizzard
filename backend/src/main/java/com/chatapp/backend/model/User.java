@@ -44,6 +44,7 @@ public class User {
                 this.userType = userType;
                 this.token = token;
                 this.is_verified = is_verified;
+    }
 	
 	public User() {
 	}
