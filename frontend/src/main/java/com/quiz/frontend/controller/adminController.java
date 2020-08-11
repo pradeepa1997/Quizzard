@@ -11,28 +11,30 @@ import org.springframework.ui.Model;
 @Controller
 public class adminController {
 
-    // @GetMapping("/admin/users")
-    // public String home(final Model model){
-    //     final String userurl = "http://localhost:8081/api/users/all";
-    //     final RestTemplate restTemplate = new RestTemplate();
+    @GetMapping("/admin/users")
+    public String home(final Model model){
+        final String userurl = "http://localhost:8081/api/users/all";
+        final RestTemplate restTemplate = new RestTemplate();
 
-    //     final User[] userObject = restTemplate.getForObject(userurl, User[].class);
-    //     System.out.println("\n\n\n");
-    //     System.out.println(userObject);
+        final User[] userObject = restTemplate.getForObject(userurl, User[].class);
+        System.out.println("\n\n\n");
+        System.out.println(userObject);
 
-    //     System.out.println("\n\n\n");
+        System.out.println("\n\n\n");
 
-    //     final String quizurl = "http://localhost:8081/api/quiz/all";
+        final String quizurl = "http://localhost:8081/api/quiz/all";
 
-    //     final Quiz[] quizObject = restTemplate.getForObject(quizurl, Quiz[].class);
-    //     System.out.println("\n\n\n");
-    //     System.out.println(quizObject);
+        final Quiz[] quizObject = restTemplate.getForObject(quizurl, Quiz[].class);
+        System.out.println("\n\n\n");
+        System.out.println(quizObject);
 
-    //     System.out.println("\n\n\n");
+        System.out.println("\n\n\n");
 
-    //     model.addAttribute("userList", userObject);
-    //     model.addAttribute("quizList", quizObject);
-    //     return "adminpanel";
-    // }  
+        model.addAttribute("userList", userObject);
+        model.addAttribute("quizList", quizObject);
+        return "adminpanel";
+    }
+    
+    
     
 }
