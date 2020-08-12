@@ -1,11 +1,11 @@
 package com.quiz.frontend.model;
 
+import javax.xml.bind.DatatypeConverter;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import javax.xml.bind.DatatypeConverter;
 
 public class JWTData{
     private static String token="";
@@ -44,8 +44,8 @@ public class JWTData{
     
     private void setclaim(){
         Claims claims = Jwts.parser()
-        .setSigningKey(DatatypeConverter.parseBase64Binary("quizzardsecretkey"))
-        .parseClaimsJws(token).getBody();
+            .setSigningKey(DatatypeConverter.parseBase64Binary("quizzardsecretkey"))
+            .parseClaimsJws(token).getBody();
         email=claims.get("email").toString();
         userName=claims.get("username").toString();
         userId=Integer.parseInt(claims.get("userId").toString());

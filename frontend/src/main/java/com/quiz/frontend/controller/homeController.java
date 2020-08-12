@@ -6,14 +6,13 @@ import org.springframework.web.client.RestTemplate;
 // import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import com.quiz.frontend.model.JWTData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.quiz.frontend.model.Quiz.Quiz;
 import com.quiz.frontend.model.Quiz.QuizCategory;
-
+import com.quiz.frontend.model.JWTData;
 
 
 @Controller
