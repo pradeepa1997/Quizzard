@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -76,18 +76,50 @@
 
 
 
-        <div class="d-flex justify-content-center px-5" style="padding-top: 100px;">
+        <div class="d-flex justify-content-center px-5 pt-3">
             <div class="col-lg-6">
-                <div class="searchbar shadow">
-                    <input class="search_input" type="text" name="" placeholder="Search for a game code...">
-                    <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-                    <div th:each="users : ${userList}">
-                        <h3 class="text-white" th:text="${users.userName}"></h3>
-                    </div>
-                    <div th:each="quizzes : ${quizList}">
-                        <h3 class="text-white" th:text="${quizzes.quizName}"></h3>
-                    </div>
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 text-center text-white" style=" border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th>User Name </th>
+                                <th>E-mail</th>
+                                <th>User Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr th:each="users : ${userList}">
+                                <td th:text="${users.userName}"> </td>
+                                <td th:text="${users.email}"> </td>
+                                <td th:text="${users.userType}"> </td>
+                                <td>
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="/profile/${{users.userID}}"><button class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-table"></i></button></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
                 </div>
+
+
+                <!-- <div th:each="users : ${userList}">
+                    <h3 class="text-white" th:text="${users.userName}"></h3>
+                </div>
+                <div th:each="quizzes : ${quizList}">
+                    <h3 class="text-white" th:text="${quizzes.quizName}"></h3>
+                </div> -->
             </div>
         </div>
         <!-- <div class="container pt-2">

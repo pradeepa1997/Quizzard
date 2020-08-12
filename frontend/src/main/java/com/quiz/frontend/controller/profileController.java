@@ -7,7 +7,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.ui.Model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.quiz.frontend.model.Quiz.Quiz;
 import com.quiz.frontend.model.User.User;
 
 @Controller
