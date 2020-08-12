@@ -6,52 +6,67 @@ import org.springframework.web.client.RestTemplate;
 // import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import com.quiz.frontend.model.JWTData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.quiz.frontend.model.Quiz.Quiz;
+import com.quiz.frontend.model.Quiz.QuizCategory;
+
+
 
 @Controller
 public class homeController {
+
+    JWTData jwttoken=new JWTData();
 
     @GetMapping("/home")
     public String home(final Model model){
         final String url = "http://localhost:8081/api/quiz/all";
         final RestTemplate restTemplate = new RestTemplate();
 
+        if(!jwttoken.isLog()){
+            return ("redirect:login");
+        }
+
         final Quiz[] quizes = restTemplate.getForObject(url, Quiz[].class);
-        List<Quiz> Maths = new ArrayList<Quiz>();
-        List<Quiz> Science = new ArrayList<Quiz>();
-        List<Quiz> Arts = new ArrayList<Quiz>();
-        List<Quiz> IT = new ArrayList<Quiz>();
-        List<Quiz> Other = new ArrayList<Quiz>();
-        List<String> category = new ArrayList<String>();
-        category.add("Maths");
-        category.add("Science");
-        category.add("Arts");
-        category.add("IT");
-        category.add("Other");
+        List<QuizCategory> quizesWithCategory = new ArrayList<QuizCategory>();
+       
+
+        QuizCategory Maths = new QuizCategory("Maths");
+        QuizCategory Science = new QuizCategory("Science");
+        QuizCategory Arts = new QuizCategory("Arts");
+        QuizCategory IT = new QuizCategory("IT");
+        QuizCategory Other = new QuizCategory("Other");
+      
 
         for (final Quiz quiz : quizes) {
+            System.out.println(quiz.getQuizCategory());
             if(quiz.getQuizCategory().equals("Maths")){    
-                Maths.add(quiz);
+                Maths.quizList.add(quiz);
             }else if(quiz.getQuizCategory().equals("Science")){    
-                Science.add(quiz);
-            }else if(quiz.getQuizCategory().equals("Arts")){    
-                Arts.add(quiz);
+                 Science.quizList.add(quiz);
+            }else if(quiz.getQuizCategory().equals("Art")){    
+                Arts.quizList.add(quiz);
             }else if(quiz.getQuizCategory().equals("IT")){    
-                IT.add(quiz);
+                IT.quizList.add(quiz);
             }else{    
-                Other.add(quiz);
+                Other.quizList.add(quiz);
             }
         }
-        model.addAttribute("Maths", Maths);
-        model.addAttribute("Science", Science);
-        model.addAttribute("Arts", Arts);
-        model.addAttribute("IT", IT);
-        model.addAttribute("Other", Other);
-        model.addAttribute("category", category);
+        quizesWithCategory.add(Maths);
+        quizesWithCategory.add(Science);
+        quizesWithCategory.add(Arts);
+        quizesWithCategory.add(IT);
+        quizesWithCategory.add(Other);
+        model.addAttribute("quizes", quizesWithCategory);
+        // model.addAttribute("Science", Science);
+        // model.addAttribute("Arts", Arts);
+        // model.addAttribute("IT", IT);
+        // model.addAttribute("Other", Other);
+        // model.addAttribute("category", category);
+        model.addAttribute("username",jwttoken.getUserName());
         return "home";
     }  
 }

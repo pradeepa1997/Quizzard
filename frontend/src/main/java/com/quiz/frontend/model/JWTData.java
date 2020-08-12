@@ -8,10 +8,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import javax.xml.bind.DatatypeConverter;
 
 public class JWTData{
-    static String token="";
-    private static userName="";
-    private static email="";
-    private static userId="";
+    private static String token="";
+    private static String userName="";
+    private static String email="";
+    private static Integer userId=-1;
     
 
     public String getToken(){
@@ -23,25 +23,32 @@ public class JWTData{
         setclaim();
         // System.out.println(getclaim().get("userId"));
     }
-    String getUserName(){
+    public String getUserName(){
         return userName;
     }
 
-    String getUserId(){
+    public Integer getUserId(){
         return userId;
     }
 
-    String getEmail(){
+    public String getEmail(){
         return email;
     }
+    public boolean isLog(){
+        if(token.equals("")){
+            return false;
+        }else{
+            return true;
+        }
+    }
     
-    private setclaim(){
+    private void setclaim(){
         Claims claims = Jwts.parser()
         .setSigningKey(DatatypeConverter.parseBase64Binary("quizzardsecretkey"))
         .parseClaimsJws(token).getBody();
-        email=claims.get("email");
-        userName=claims.get("username");
-        userId=claims.get("userId");
+        email=claims.get("email").toString();
+        userName=claims.get("username").toString();
+        userId=Integer.parseInt(claims.get("userId").toString());
         // return claims;
     }
     

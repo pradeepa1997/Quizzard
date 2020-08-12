@@ -4,6 +4,8 @@ import com.quiz.frontend.model.Question.Question;
 import com.quiz.frontend.model.Quiz.Quiz;
 import com.quiz.frontend.model.Quiz.QuizPost;
 import com.quiz.frontend.model.Quiz.QuizeGet;
+import com.quiz.frontend.model.JWTData;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +17,14 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class quizeController {
     
+    JWTData jwttoken=new JWTData();
+
     @GetMapping(value = "/addquiz")
     public String addQuiz(final Model model) {
         // getEmployees();
+        if(!jwttoken.isLog()){
+            return ("redirect:login");
+        }
         model.addAttribute("quiz", new QuizPost());
         model.addAttribute("error", false);
         return "addquiz"; 
@@ -27,15 +34,17 @@ public class quizeController {
     public String addQuizSubmit(@ModelAttribute QuizPost quizPost,final Model model){
         
         final String url = "http://localhost:8081/api/quiz/add";
+        
         Quiz quiz;
-        if(quizPost.getOther()!=null && quizPost.getOther().equals("")){
-            quiz=new Quiz(1,quizPost.getQuizeCategory(),quizPost.getQuizName());
+        if(quizPost.getOther()==null || quizPost.getOther().equals("")){
+            quiz=new Quiz(jwttoken.getUserId(),quizPost.getQuizeCategory(),quizPost.getQuizName());
         }else{
-            quiz=new Quiz(1,quizPost.getOther(),quizPost.getQuizName());
+            quiz=new Quiz(jwttoken.getUserId(),quizPost.getOther(),quizPost.getQuizName());
         }
+        
         RestTemplate restTemplate = new RestTemplate();
         String quizid=restTemplate.postForObject(url,quiz ,String.class);
-        System.out.println(quizid);
+        
          
         try{
             Question question= new Question();
