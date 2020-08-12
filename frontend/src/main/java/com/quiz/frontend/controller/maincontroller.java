@@ -2,23 +2,34 @@ package com.quiz.frontend.controller;
 
 
 
-// import com.quiz.frontend.model.;
-
+//  com.quiz.frontend.model.;
+import com.quiz.frontend.model.JWTData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+
 @Controller
 public class maincontroller {
 
+    JWTData jwttoken=new JWTData();
+
     @RequestMapping(value = "/")
-    public String index(final Model model) {
+    public String index(final Model model){
         return "index";
     }
 
-    @RequestMapping(value = "/home")
-    public String home(final Model model) {
-        return "home";
+    
+
+    @RequestMapping(value = "/authenticate")
+    public String authenticate() {
+        System.out.println(jwttoken.getToken()+"hiiiii");
+        if(jwttoken.getToken()==""){
+            return ("redirect:login");
+        }else{
+            return ("redirect:home");
+        }
     }
 
     @RequestMapping(value = "/quiz")
@@ -26,8 +37,8 @@ public class maincontroller {
         return "quiz";
     }
 
-    @RequestMapping(value = "/admin")
-    public String admin(final Model model) {
-        return "adminpanel";
-    }
+    // @RequestMapping(value = "/admin/users")
+    // public String admin(final Model model) {
+    //     return "adminpanel";
+    // }
 }

@@ -20,7 +20,7 @@ public class quizeController {
         // getEmployees();
         model.addAttribute("quiz", new QuizPost());
         model.addAttribute("error", false);
-        return "addquiz";   
+        return "addquiz"; 
     }
     
     @PostMapping("/addquiz")

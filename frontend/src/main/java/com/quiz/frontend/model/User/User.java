@@ -6,6 +6,8 @@ public class User{
     private String email ;
     private String password ;
     private String userType ;
+    private String token ;
+    private Boolean isVerified ;
 
     public void User() {
         
@@ -51,5 +53,21 @@ public class User{
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Boolean getIsVerified() {
+        return isVerified;
+    }
+
+    public void setIsVerified(Boolean isVerified) {
+        this.isVerified = isVerified;
     }
 }

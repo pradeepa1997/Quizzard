@@ -15,15 +15,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
+import com.quiz.frontend.model.JWTData;
 
 @Controller
 public class authController {
+
+
+
+    JWTData jwttoken=new JWTData();
 
     @GetMapping(value = "/login")
     public String login(final Model model) throws MalformedURLException {
         model.addAttribute("user", new LoginUser());
         return "auth/login";
     }
+    
     @GetMapping(value = "/register")
     public String register(final Model model) {
         model.addAttribute("user", new RegisterUser());
@@ -137,7 +143,19 @@ public class authController {
         try{
             String resBody = restTemplate.postForObject(url, user, String.class);
             JSONObject res = new JSONObject(resBody);
+            System.out.println(res.getString("message"));
             try{
+                if(res.getString("message").equals("invalid details")){
+                    // RegisterUser temp=new RegisterUser();
+                    model.addAttribute("user",user);
+                    model.addAttribute("error",true);
+                    return "auth/register";
+                }else if(res.getString("message").equals("Email already in use")){
+                    model.addAttribute("user",user);
+                    model.addAttribute("error",true);
+                    return "auth/register";
+                }
+                
                 model.addAttribute("user", new LoginUser());
                 model.addAttribute("success", true);
                 model.addAttribute("successmessage", "registered successfully ! your account verification link has been sent to your email");
@@ -165,15 +183,19 @@ public class authController {
             String resBody = restTemplate.postForObject(url, user, String.class);
             JSONObject res = new JSONObject(resBody);
             try{
-                System.out.println(res.get("token"));
-                model.addAttribute("user", new LoginUser());
-                return "/home";
+
+                jwttoken.setToken(res.get("token")+"");
+                System.out.println(jwttoken.getUserName());
+                return ("redirect:home");
+
             }catch(Exception e){
+
                 System.out.println(res.get("message"));
                 model.addAttribute("user", new LoginUser());
                 model.addAttribute("error", true);
                 model.addAttribute("errormessage", res.get("message"));
                 return "auth/login";
+                
             }    
         }catch(Exception e){
             model.addAttribute("user", new LoginUser());

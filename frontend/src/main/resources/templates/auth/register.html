@@ -52,6 +52,8 @@
                     <input class="mb-0" type="password" id="repassword" name="reTypePassword" placeholder="Re Enter the password">
                     <small id="repassword-error" class="mb-4 text-danger"></small>
                 </div>
+                <div style="color: red;text-align: center;margin-top: 30px;"><small th:if="${error}">This email already used</small></div>
+
                 <div class="row mb-3 px-3 mt-3 sign-up-btn"> <button type="submit" class="btn btn-blue text-center">Sign Up</button> </div>
                 <div class="row mb-4 px-3 back-to-login"> <small class="font-weight-bold"> <a class="text-register" href="/login">Back to login</a></small> </div>
             </form>
