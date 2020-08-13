@@ -16,12 +16,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.chatapp.backend.Services.AuthService;
-
+import com.chatapp.backend.repository.Questionrepo;
 import com.chatapp.backend.repository.Quizrepo;
 import com.chatapp.backend.repository.Quiztryrepo;
 import com.chatapp.backend.repository.UserRepository;
 
 import com.chatapp.backend.model.User;
+import com.chatapp.backend.model.Question;
 import com.chatapp.backend.model.Quiz;
 import com.chatapp.backend.model.Quiztry;
 
@@ -36,10 +37,15 @@ public class UserController {
     Quizrepo quizrepo;
 
     @Autowired
+    Questionrepo questionrepo;
+
+    @Autowired
     Quiztryrepo quiztryrepo;
 
     @Autowired
     AuthService authService;
+
+    
 
     @GetMapping(value = "/all")
     public List<User> getAllUsers() {
@@ -87,11 +93,26 @@ public class UserController {
     }
 
 
-    // @GetMapping("/delete/{id}")
-    // public List<User> deleteStudent(@PathVariable long id) {
-    //     // usersrepo.deleteById(id);
-    //     return usersrepo.findAll();
-    // }
+    @DeleteMapping("/delete/{id}")
+    public List<User> deleteStudent(@PathVariable Integer id) {
+        System.out.println(id);
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        usersrepo.deleteById(id);
+        List<Quiz> temp=quizrepo.findByCreatorID(id);
+        System.out.println(temp.size());
+        if(temp.size()!=0){
+            for(final Quiz element:temp){
+                List<Question> qtemp = questionrepo.findByQuizID(element.getQuizID());
+                for(final Question qelement:qtemp){
+                    questionrepo.delete(qelement);
+                }
+                quizrepo.delete(element);
+            }
+        }
+        
+
+        return usersrepo.findAll();
+    }
 
 
     @GetMapping("/getUser/{token}")
@@ -103,7 +124,7 @@ public class UserController {
                 User user = authService.getUser(jws.getBody().get("email").toString());
                 return user;
             }
-            catch (JwtException ex) {  
+            catch (JwtException ex){  
                 return new User();
             }
         }catch(Exception e){
