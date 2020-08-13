@@ -81,6 +81,19 @@ public class UserController {
         return Upstatus; 
     }
 
+    @GetMapping(value = "/del")
+    public List<User> AllUsers() {
+        return usersrepo.findAll();
+    }
+
+
+    // @GetMapping("/delete/{id}")
+    // public List<User> deleteStudent(@PathVariable long id) {
+    //     // usersrepo.deleteById(id);
+    //     return usersrepo.findAll();
+    // }
+
+
     @GetMapping("/getUser/{token}")
     public User verifyMail(@PathVariable String token) {
         Map<String, String> map = new HashMap<>();
