@@ -45,7 +45,7 @@ public class AuthService {
     public Boolean verifyMail(String email) throws EtAuthException {
         if(authRepository.getCountByEmail(email) == 1){
             try{
-                authRepository.verifyEmail(email);
+                authRepository.verifyEmail(1);
                 return true;
             }catch(EtAuthException e){
                 return false;

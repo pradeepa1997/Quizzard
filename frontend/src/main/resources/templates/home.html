@@ -29,7 +29,10 @@
                             <a class="nav-link text-muted" href="/home"><i class="fas fa-home pr-1"></i> Home</a>
                         </li>
                         <li class="nav-item pr-3">
-                        <a class="nav-link" href="/activity"> <i class="fas fa-history pr-1"></i> activity </a>
+                            <a class="nav-link" href="/activity"> <i class="fas fa-history pr-1"></i> My Quizes </a>
+                        </li>
+                        <li class="nav-item active pr-3">
+                            <a class="nav-link text-muted" href="/addquiz"><i class="fas fa-home pr-1"></i> Create Quiz</a>
                         </li>
                     </ul>
 
@@ -37,7 +40,7 @@
                         <li class="nav-item active pr-3">
                             <div class="row">
                                 <img class="rounded-circle" style="max-width: 40px;height:40px"src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="user">
-                                <a class="nav-link" href="#"> <strong> Sample User </strong> </a>    
+                                <a class="nav-link" href="#"> <strong th:text="${username}">  </strong> </a>    
                             </div>
                         </li>
                     </ul>
@@ -53,21 +56,27 @@
             </div>
         </div>
         <div class="container pt-2">
-            <h5 class="text-white px-3 pt-3"> Category </h5>
-            <div class="row px-3">
-                <div  class="col-md-3" th:each="quiz : ${quizList}">
-                    <div data-toggle="modal" data-target="#quiz-card">
-                        <div class="card shadow  quiz-hover">
-                            <div class="card header">
-                                <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
-                            </div>
-                            <div class="card-body bg info">
-                                <h6 class="text-center m-0"  th:text="${quiz.quizName}"></h6>
-                            </div>
-                        </div> 
-                    </div>     
-                </div>
+            <div th:each="quizecat : ${quizes}" class="py-2">
+                <div class="card border border-secondary" style="background-color: transparent;">
+                    <h4 class="text-white px-4 pt-3 m-0" th:text="${quizecat.category}"></h4>
+                    <hr class="bg-secondary" style="margin-left: auto ; margin-right: auto ;width: 98%;">
+                    <div class="row px-3">
+                        <div  class="col-md-3" th:each="quiz : ${quizecat.quizList}">
+                            <div class="pb-3" data-toggle="modal" data-target="#quiz-card">
+                                <div class="card shadow quiz-hover">
+                                    <div class="card header">
+                                        <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
+                                    </div>
+                                    <div class="card-body bg info">
+                                        <h6 class="text-center m-0"  th:text="${quiz.quizName}"></h6>
+                                    </div>
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+                </div>                
             </div>
+            
 
             <div class="modal fade" id="quiz-card" tabindex="-1" role="dialog" aria-labelledby="quiz-cardTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -86,6 +95,8 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
+    <script src="javascript/addquestion.js"></script>  
   </body>
+
 </html>

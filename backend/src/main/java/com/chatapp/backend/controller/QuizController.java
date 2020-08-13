@@ -28,6 +28,7 @@ public class QuizController {
     }
     @PostMapping(value = "/add")
     public Integer add(@RequestBody final Quiz quiz) {
+        System.out.println(quiz.getCreatorID()+quiz.getQuizCategory()+quiz.getQuizID()+quiz.getQuizName());
         Quiz saved=quizrepo.save(quiz);
         System.out.println(saved.getQuizID());
         return saved.getQuizID();

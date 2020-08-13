@@ -9,199 +9,53 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <style>
-        body {
-            color: rgb(255, 255, 255);
-            overflow-x: hidden;
-            height: 100%;
-            background-color: #B0BEC5;
-            background-repeat: no-repeat
-        }
-        
-        .logo {
-            width: 200px;
-            height: 100px;
-            margin-top: 20px;
-            margin-left: 35px
-        }
-        
-        .image {
-            width: 360px;
-            height: 280px
-        }
-        
-        .border-line {
-            border-right: 1px solid #EEEEEE
-        }
-        
-        .login-container {
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0);
-        }
-        
-        .login-content {
-            width: 40% !important;
-            margin: auto;
-            margin-top: 10%;
-            padding: 30px 20px !important;
-            background-color: rgba(4, 47, 71, 0.685);
-            box-shadow: 2px 2px 3px rgb(75, 74, 74);
-            border-radius: 10px;
-            color: white;
-        }
-        
-        .signup-content {
-            width: 40% !important;
-            margin: auto;
-            margin-top: 5%;
-            padding: 30px 20px !important;
-            background-color: rgba(4, 47, 71, 0.685);
-            box-shadow: 2px 2px 3px rgb(75, 74, 74);
-            border-radius: 10px;
-            color: white;
-        }
-        
-        .sign-up-btn {
-            float: right;
-        }
-        
-        .text-register {
-            color: rgb(145, 248, 231);
-            font-size: 15px;
-        }
-        
-        .back-to-login {
-            margin-top: 20px;
-        }
-        
-        .login-header {
-            padding-bottom: 30px;
-            font-size: 30px;
-            font-weight: 600;
-            color: rgb(226, 226, 250);
-        }
-        
-        .text-sm {
-            font-size: 14px !important
-        }
-        
-         ::placeholder {
-            color: #BDBDBD;
-            opacity: 1;
-            font-weight: 300
-        }
-        
-         :-ms-input-placeholder {
-            color: #BDBDBD;
-            font-weight: 300
-        }
-        
-         ::-ms-input-placeholder {
-            color: #BDBDBD;
-            font-weight: 300
-        }
-        
-        input,
-        textarea {
-            padding: 10px 12px 10px 12px;
-            border: 1px solid lightgrey;
-            border-radius: 2px;
-            margin-bottom: 5px;
-            margin-top: 2px;
-            width: 100%;
-            box-sizing: border-box;
-            color: #2C3E50;
-            font-size: 14px;
-            letter-spacing: 1px
-        }
-        
-        input:focus,
-        textarea:focus {
-            -moz-box-shadow: none !important;
-            -webkit-box-shadow: none !important;
-            box-shadow: none !important;
-            border: 1px solid #304FFE;
-            outline-width: 0
-        }
-        
-        button:focus {
-            -moz-box-shadow: none !important;
-            -webkit-box-shadow: none !important;
-            box-shadow: none !important;
-            outline-width: 0
-        }
-        
-        a {
-            color: inherit;
-            cursor: pointer
-        }
-        
-        .btn-blue {
-            background-color: #1A237E;
-            width: 150px;
-            color: #fff;
-            border-radius: 2px
-        }
-        
-        .btn-blue:hover {
-            background-color: #000;
-            cursor: pointer
-        }
-        
-        .bg-blue {
-            color: #fff;
-            background-color: #1A237E
-        }
-        
-        @media screen and (max-width: 991px) {
-            .logo {
-                margin-left: 0px
-            }
-            .image {
-                width: 300px;
-                height: 220px
-            }
-            .border-line {
-                border-right: none
-            }
-            .card2 {
-                border-top: 1px solid #EEEEEE !important;
-                margin: 0px 15px
-            }
-        }
-    </style>
-    <title> Quizzard </title>
+
+    <title>Login to Quizzard </title>
 </head>
 
 <body>
-
-    <div class="container-fluid login-container" style="height: 100vh;background-color: #223;">
-        <div class="col login-content">
-            <form action="/login" method="POST" id="login-form" th:action="@{/login}" th:object="${user}">
-                <div class="btn-center">
-                    <small th:if="${error}" th:text="${errormessage}" class="text-danger"> </small>
+    <div class="container-fluid login-container d-flex justify-content-center" style="height: 100vh;background-color: #223;">
+        <div class="col-md-4 px-5">
+            <div class="card shadow bg-light" style="margin-top: 30%;">
+                <div class="card-header bg-primary text-center">
+                    <h4 class="mb-0 text-white"> Login to Quizzard </h4>    
                 </div>
-                <div class="btn-center">
-                    <small th:if="${success}" th:text="${successmessage}" class="text-success"> </small>
+                <div class="card-body px-3">
+                    <form action="/login" method="POST" id="login-form" th:action="@{/login}" th:object="${user}">
+                        <div class="btn-center">
+                            <small th:if="${error}" th:text="${errormessage}" class="text-danger"> </small>
+                        </div>
+                        <div class="btn-center">
+                            <small th:if="${success}" th:text="${successmessage}" class="text-success"> </small>
+                        </div>
+                        <div class="row px-3 py-3">
+                            <label class="mb-1">
+                                <h6 class="mb-0">Email Address</h6>
+                            </label>
+                            <input class="mb-1 form-control form-control-sm" type="text" id="email" name="email" th:field="*{email}" placeholder="Enter a valid email address">
+                            <small id="email-error" class="text-danger"></small>
+                        </div>
+                        <div class="row px-3 py-3">
+                            <label class="mb-1">
+                                <h6 class="mb-1">Password</h6>
+                            </label>
+                            <input class="mb-1 form-control form-control-sm" type="password" id="password" name="password" th:field="*{password}" placeholder="Enter password">
+                            <small id="password-error" class="mb-1 text-danger"></small>
+                        </div>
+                        <div class="row px-3 mb-2">
+                            <a href="/forgotPassword" class="ml-auto mb-0"><small>Forgot Password?</small> </a>
+                        </div>
+                        <div class="col-md-5 m-0 p-0">
+                            <button type="submit" class="btn btn-block bg-primary rounded text-white text-center">Login</button>
+                        </div>
+                        <div class="row my-2 px-3"> <small> Don't have an account ? <a  href="/register"class="text-register ">Register</a></small> </div>
+                    </form>
                 </div>
-                <div class="login-header">LOGIN</div>
-                <div class="row px-3"> <label class="mb-1">
-                <h6 class="mb-0 text-sm">Email Address</h6>
-                </label>
-                    <input class="mb-1" type=" text" id="email" name="email" th:field="*{email}" placeholder="Enter a valid email address"> </div>
-                <small id="email-error" class="mb-4 text-danger"></small>
-                <div class="row px-3"> <label class="mb-1">
-                <h6 class="mb-1 text-sm">Password</h6>
-            </label> <input type="password" id="password" name="password" th:field="*{password}" placeholder="Enter password"> </div>
-                <small id="password-error" class="mb-4 text-danger"></small>
-                <div class="row px-3 mb-4">
-                    <a href="/forgotPassword" class="ml-auto mb-0 text-sm">Forgot Password?</a>
-                </div>
-                <div class="row mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">Login</button> </div>
-                <div class="row mb-4 px-3"> <small class="font-weight-bold">Don't have an account ? <a  href="/register"class="text-register ">Register</a></small> </div>
-            </form>
+            </div>
+            
         </div>
     </div>
+    
     <script>
         const email = document.getElementById('email');
         const password = document.getElementById('password');

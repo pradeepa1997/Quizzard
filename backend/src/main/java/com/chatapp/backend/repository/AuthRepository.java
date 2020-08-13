@@ -28,25 +28,30 @@ public class AuthRepository {
     
     public void create(String username, String email, String password) throws EtAuthException {
         String hashedPass = BCrypt.hashpw(password, BCrypt.gensalt(10));
+        System.out.println(hashedPass);
         try{
-            jdbcTemplate.update(SQL_INSERT,username,email, hashedPass,false,"user");
+            jdbcTemplate.update(SQL_INSERT,username,email, hashedPass,0,"user");
             return;
         }catch(Exception e){
+            System.out.println(e);
             throw new EtAuthException("invalid details");
         }
     }
 
     public User findByEmailAndPassword(String email, String password) throws EtAuthException {
             User user = jdbcTemplate.queryForObject(SQL_FIND_BY_EMAIL, new Object[]{email} , userRowMapper);
+            System.out.println(user.toString());
+
             if(user.toString() != null){
                 if(!BCrypt.checkpw(password, user.getPassword())){
                     throw new EtAuthException("invalid email/password");
                 }else{
-                    if(user.getIsVerified()){
+                    System.out.println(user.getIsVerified());
+                    // if(user.getIsVerified()==1){
                         return user;
-                    }else{
-                        throw new EtAuthException("email is not verified , please check your email for verification link");
-                    }    
+                    // }else{
+                        // throw new EtAuthException("email is not verified , please check your email for verification link");
+                    // }    
                 }
             }else{
                 throw new EtAuthException("invalid credentials");
@@ -70,7 +75,7 @@ public class AuthRepository {
         return jdbcTemplate.queryForObject(SQL_FIND_BY_USER_ID, new Object[]{userId} , userRowMapper);
     }
 
-    public void verifyEmail(String email) throws EtAuthException {
+    public void verifyEmail(Integer email) throws EtAuthException {
         jdbcTemplate.update(SQL_VERIFY_EMAIL,email);
     }
 
@@ -94,7 +99,7 @@ public class AuthRepository {
             rs.getString("password"),
             rs.getString("user_type"),
             rs.getString("token"),
-            rs.getBoolean("is_verified")
+            rs.getInt("is_verified")
             );
     });
 }

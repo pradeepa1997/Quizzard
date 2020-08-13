@@ -5,56 +5,69 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="css/login.css">
+    <!-- <link rel="stylesheet" href="css/login.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <title> Quizzard </title>
+    <title> Get Started - Quizzard </title>
 </head>
 
 <body>
 
-    <div class="container-fluid login-container" style="height: 100vh;background-color: #223;">
-        <div class="col signup-content">
-            <div class="login-header">SIGN UP</div>
-            <form action="#" id="register-form" method="POST" th:action="@{/register}" th:object="${user}">
-                <div class="btn-center">
-                    <small th:if="${error}" th:text="${errormessage}" class="text-danger"> </small>
+    <div class="container-fluid  d-flex justify-content-center" style="height: 100vh;background-color: #223;">
+        <div class="col-md-4 px-5">
+            <div class="card shadow bg-light text-center"style="margin-top: 30%;">
+                <div class="card-header bg-primary text-center">
+                    <h4 class="mb-0 text-white"> Register </h4>
                 </div>
-                <div class="row px-3">
-                    <label class="mb-1">
-                        <h6 class="mb-0 text-sm">Email Address</h6>
-                    </label>
-                    <input class="mb-1" type="text" id="email" name="email" th:field="*{email}" placeholder="Enter a valid email address">
-                    <small id="email-error" class="mb-4 text-danger"></small>
+                <div class="card-body px-3">
+                    <form action="#" id="register-form" method="POST" th:action="@{/register}" th:object="${user}">
+                        <div class="btn-center">
+                            <small th:if="${error}" th:text="${errormessage}" class="text-danger"> </small>
+                        </div>
+                        <div class="row px-3">
+                            <label class="mb-1">
+                                <h6 class="mb-0">Email Address</h6>
+                            </label>
+                            <input class="mb-1 form-control form-control-sm" type="text" id="email" name="email" th:field="*{email}" placeholder="Enter a valid email address">
+                            <small id="email-error" class="mb-4 text-danger"></small>
+                        </div>
+                        <div class="row px-3 py-2">
+                            <label class="mb-1">
+                                <h6 class="mb-0">Username</h6>
+                            </label>
+                            <input class="mb-1 form-control form-control-sm" type="text" id="username" th:field="*{userName}" name="username" placeholder="Enter a username">
+                            <small id="username-error" class="mb-4 text-danger"></small>
+                        </div>
+                        <div class="row d-flex justify-content-between">
+                            <div class="row ml-0 col-md-6">
+                                <label class="mb-1">
+                                    <h6 class="mb-0">Password</h6>
+                                </label>
+                                <input class="mb-1 form-control form-control-sm" type="password" id="password" th:field="*{password}" name="password" placeholder="Enter a password">
+                            </div>
+                            <div class="row col-md-6 pr-0">
+                                <label class="mb-1">
+                                    <h6 class="mb-0"> Re-enter Password</h6>
+                                </label>
+                                <input class="mb-1 pr-0 mr-0 form-control form-control-sm" type="password" id="repassword" name="reTypePassword" placeholder="Re-enter password">
+                            </div>
+                            <small id="repassword-error" class="mb-4 text-danger"></small>
+                            <small id="password-error" class="mb-4 text-danger"></small>
+                        </div>
+                        <div style="color: red;text-align: center;margin-top: 30px;"><small th:if="${error}">This email already used</small></div>
+                        
+                        <div class="col-md-5 m-0 p-0">
+                            <button type="submit" class="btn btn-primary rounded btn-block text-center">Sign Up</button>
+                        </div>
+                        <div class="row my-2 px-3 back-to-login"> <small> <a class="text-register" href="/login">Back to login</a></small> </div>
+                    </form>
                 </div>
-                <div class="row px-3">
-                    <label class="mb-1">
-                        <h6 class="mb-0 text-sm">Username</h6>
-                    </label>
-                    <input class="mb-1" type="text" id="username" th:field="*{userName}" name="username" placeholder="Enter a username">
-                    <small id="username-error" class="mb-4 text-danger"></small>
-                </div>
-                <div class="row px-3">
-                    <label class="mb-1">
-                        <h6 class="mb-0 text-sm">Password</h6>
-                    </label>
-                    <input class="mb-1" type="password" id="password" th:field="*{password}" name="password" placeholder="Enter a password">
-                    <small id="password-error" class="mb-4 text-danger"></small>
-                </div>
-                <div class="row px-3">
-                    <label class="mb-1">
-                        <h6 class="mb-0 text-sm">Retype Password</h6>
-                    </label>
-                    <input class="mb-0" type="password" id="repassword" name="reTypePassword" placeholder="Re Enter the password">
-                    <small id="repassword-error" class="mb-4 text-danger"></small>
-                </div>
-                <div class="row mb-3 px-3 mt-3 sign-up-btn"> <button type="submit" class="btn btn-blue text-center">Sign Up</button> </div>
-                <div class="row mb-4 px-3 back-to-login"> <small class="font-weight-bold"> <a class="text-register" href="/login">Back to login</a></small> </div>
-            </form>
+            </div>
+            
         </div>
     </div>
     <script src="javascript/auth/register.js"></script>

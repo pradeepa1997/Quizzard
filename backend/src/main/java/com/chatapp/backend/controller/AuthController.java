@@ -40,7 +40,8 @@ public class AuthController {
         String username = (String) userMap.get("userName");
         String email = (String) userMap.get("email");
         String password = (String) userMap.get("password");
-
+        
+        System.out.println(username+email+password);
         long timeStamp = System.currentTimeMillis();
         String token = Jwts.builder().signWith(SignatureAlgorithm.HS256, Constants.API_SECRET_KEY)
                 .setIssuedAt(new Date(timeStamp)).claim("username", username)
