@@ -72,6 +72,7 @@ public class UserController {
     @PutMapping(value = "/update")
     public String updateUser(@RequestBody final User user) {
         String Upstatus = null ;
+        System.out.println(user.getUserName());
         if(user.getUserID() != null){
             usersrepo.save(user);
             Upstatus = "update successfull";

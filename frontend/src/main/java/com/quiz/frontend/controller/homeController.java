@@ -66,6 +66,7 @@ public class homeController {
         // model.addAttribute("Other", Other);
         // model.addAttribute("category", category);
         model.addAttribute("username",jwttoken.getUserName());
+        model.addAttribute("userID",jwttoken.getUserId());
         return "home";
     }  
 }

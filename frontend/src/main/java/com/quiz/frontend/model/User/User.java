@@ -7,7 +7,7 @@ public class User{
     private String password ;
     private String userType ;
     private String token ;
-    private Boolean isVerified ;
+    private Integer isVerified ;
 
     public void User() {
         
@@ -63,11 +63,11 @@ public class User{
         this.token = token;
     }
 
-    public Boolean getIsVerified() {
+    public Integer getIsVerified() {
         return isVerified;
     }
 
-    public void setIsVerified(Boolean isVerified) {
+    public void setIsVerified(Integer isVerified) {
         this.isVerified = isVerified;
     }
 }
