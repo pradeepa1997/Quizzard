@@ -1,0 +1,23 @@
+.allquizflag{
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    float: left;
+    padding:10px;
+}
+.atempt-box{
+    display: inline-block;
+    margin: 5px;
+    border: 2px solid black;
+    width: 20px;
+    height: 20px;
+    padding:2px;
+    box-sizing: border-box;
+    /* background-color: green; */
+}
+
+.atempt-box-inner{
+    width: 12px;
+    height: 12px;
+    background-color: rgb(46, 216, 46);
+}

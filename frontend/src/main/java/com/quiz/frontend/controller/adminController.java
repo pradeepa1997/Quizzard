@@ -1,10 +1,15 @@
 package com.quiz.frontend.controller;
 
+import java.lang.ProcessBuilder.Redirect;
+
 import com.quiz.frontend.model.Quiz.Quiz;
 import com.quiz.frontend.model.User.User;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.ui.Model;
 
@@ -35,6 +40,19 @@ public class adminController {
         return "adminpanel";
     }
     
-    
+    @GetMapping("/admin/user/delete/{id}")
+    public String deleteUser(@PathVariable Integer id) {
+        final String delurl = "http://localhost:8081/api/users/delete/" + id;
+        final RestTemplate restTemplate = new RestTemplate();
+
+        System.out.println("\n\n\n");
+        System.out.println(id);
+
+        System.out.println("\n\n\n");
+        restTemplate.delete(delurl);
+        // restTemplate.delete(, id);
+        return ("redirect:/admin/users");
+        
+    }
     
 }

@@ -6,7 +6,6 @@ import org.springframework.web.client.RestTemplate;
 // import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import com.quiz.frontend.model.JWTData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 import com.quiz.frontend.model.Quiz.Quiz;
 import com.quiz.frontend.model.Quiz.QuizGet;
 import com.quiz.frontend.model.Quiz.QuizCategory;
-
+import com.quiz.frontend.model.JWTData;
 
 
 @Controller
@@ -45,6 +44,7 @@ public class homeController {
       
 
         for (final QuizGet quiz : quizes) {
+            
             System.out.println(quiz.getQuizID());
             System.out.println(quiz.getCreatorID());
             if(quiz.getQuizCategory().equals("Maths")){    
@@ -66,6 +66,7 @@ public class homeController {
         quizesWithCategory.add(Other);
         model.addAttribute("quizes", quizesWithCategory);
         model.addAttribute("username",jwttoken.getUserName());
+        model.addAttribute("userID",jwttoken.getUserId());
         return "home";
     }  
 }

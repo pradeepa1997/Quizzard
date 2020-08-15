@@ -4,11 +4,14 @@ function onLoad(){
         document.getElementById('alert')&&(document.getElementById('alert').style.display="none");
     },3000);
 }
-var message = "[[${message}]]";
-function hell(){
+// var message = "[[${message}]]";
+function hell(a,b){
     // var number = [[${number}]];
+    
+    document.getElementById("modaltittle").innerHTML=a;
+    document.getElementById("quizlink").href="/attemptquiz/"+b;
 
     
-    console.log(message);
+    console.log(a,b);
 
 }

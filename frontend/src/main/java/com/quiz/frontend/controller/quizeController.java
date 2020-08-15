@@ -1,16 +1,19 @@
 package com.quiz.frontend.controller;
 
 import com.quiz.frontend.model.Question.Question;
+import com.quiz.frontend.model.Question.QuestionAtempt;
 import com.quiz.frontend.model.Quiz.Quiz;
 import com.quiz.frontend.model.Quiz.QuizPost;
-import com.quiz.frontend.model.Quiz.QuizGet;
-import com.quiz.frontend.model.JWTData;
 
+import java.util.ArrayList;
+
+import com.quiz.frontend.model.JWTData;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,10 +21,10 @@ import org.springframework.web.client.RestTemplate;
 public class quizeController {
     
     JWTData jwttoken=new JWTData();
+    static public QuestionAtempt questionAtempt;
 
     @GetMapping(value = "/addquiz")
     public String addQuiz(final Model model) {
-        // getEmployees();
         if(!jwttoken.isLog()){
             return ("redirect:login");
         }
@@ -49,7 +52,7 @@ public class quizeController {
         try{
             Question question= new Question();
             question.setQuizID(Integer.parseInt(quizid));
-            System.out.println(question.getQuizID()+10);
+            System.out.println(question.getQuizID());
             model.addAttribute("questions",question);
             model.addAttribute("alert",false);
             return "question";   
@@ -79,15 +82,45 @@ public class quizeController {
         return "question";   
         
     }
+    @GetMapping("/attemptquiz/{quizid}/{question}")
+    public String AttemptQuiz(@PathVariable final Integer quizid,@PathVariable final Integer question,final Model model){
+        
+        Boolean[] boolArray = new Boolean[questionAtempt.getQuestions().size()-1];
+        for (int i=0; i<questionAtempt.getQuestions().size()-1;i++ ){
+            if(i<question){
+                boolArray[i]=true;
+            }else{
+                boolArray[i]=false;
+            }
+        }
+
+        model.addAttribute("quiz",questionAtempt.getQuiz());
+        model.addAttribute("question",questionAtempt.getQuestions().get(question-1));
+        model.addAttribute("boolArray",boolArray);
+        model.addAttribute("username",jwttoken.getUserName());
+        model.addAttribute("userID",jwttoken.getUserId());
+        return "attemptquiz";   
+        
+    }
+    
+    @GetMapping("/attemptquiz/{id}")
+    public String AttemptQuiz(@PathVariable final Integer id,final Model model){
+
+        final String url = "http://localhost:8081/api/quiz/"+id;
+        System.out.println(id);
+        RestTemplate restTemplate = new RestTemplate();
+        QuestionAtempt result=restTemplate.getForObject(url, QuestionAtempt.class);
+        System.out.println(result.getQuestions().size());
+        questionAtempt=result;
+        
+        return ("redirect:/attemptquiz/"+id+"/"+1);
+          
+        
+    }
+
     
 
 
-    // private static void getEmployees(){
-    //     // getForObject(url, Quiz[].class)
-    //     final String uri = "http://localhost:8081/api/quiz/all";
-    //     RestTemplate restTemplate = new RestTemplate();
-    //     QuizeGet[] result = restTemplate.getForObject(uri, QuizeGet[].class);
-    //     // System.out.println(result[0].getQuizName());
-    // }
+   
    
 }

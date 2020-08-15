@@ -87,9 +87,7 @@ public class Question {
     public void setQuestionID(Integer questionID) {
         this.questionID = questionID;
     }
-    // public void setQuestionName(String questionName) {
-    //     this.questionName = questionName;
-    // }
+    
     public void setQuizID(Integer quizID) {
         this.quizID = quizID;
     }

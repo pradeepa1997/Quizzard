@@ -1,5 +1,6 @@
 package com.chatapp.backend.controller;
 
+import com.chatapp.backend.repository.Questionrepo;
 import com.chatapp.backend.repository.Quizrepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+import com.chatapp.backend.model.Question;
+import com.chatapp.backend.model.Questions;
 import com.chatapp.backend.model.Quiz;
 
 @RestController
@@ -21,6 +24,9 @@ import com.chatapp.backend.model.Quiz;
 public class QuizController {
     @Autowired
     Quizrepo quizrepo;
+
+    @Autowired
+    Questionrepo questionrepo;
 
     @GetMapping(value = "/all")
     public List<Quiz> getall() {
@@ -38,8 +44,24 @@ public class QuizController {
         return saved.getQuizID();
     }
     @GetMapping(value = "/{id}")
-    public Optional<Quiz> getByID(@PathVariable final Integer id) {
-        return quizrepo.findById(id);
+    public Questions getByID(@PathVariable final Integer id) {
+
+        // Quiz q= ;
+
+        try{
+            List<Question> questions=questionrepo.findByQuizID(id);
+            Questions result=new Questions();
+            Optional<Quiz> quiz=quizrepo.findById(id);
+            
+            result.setQuiz(quiz.get());
+            result.setQuestions(questions);
+            return result;
+        }
+        catch(Exception e){
+            return null;
+        }
+        
+
     }
     
 }
