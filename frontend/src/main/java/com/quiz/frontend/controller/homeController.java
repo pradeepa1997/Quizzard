@@ -60,13 +60,9 @@ public class homeController {
         quizesWithCategory.add(IT);
         quizesWithCategory.add(Other);
         model.addAttribute("quizes", quizesWithCategory);
-        // model.addAttribute("Science", Science);
-        // model.addAttribute("Arts", Arts);
-        // model.addAttribute("IT", IT);
-        // model.addAttribute("Other", Other);
-        // model.addAttribute("category", category);
         model.addAttribute("username",jwttoken.getUserName());
         model.addAttribute("userID",jwttoken.getUserId());
+        model.addAttribute("searchList",quizes);
         return "home";
     }  
 }
