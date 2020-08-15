@@ -3,7 +3,7 @@ package com.quiz.frontend.controller;
 import com.quiz.frontend.model.Question.Question;
 import com.quiz.frontend.model.Quiz.Quiz;
 import com.quiz.frontend.model.Quiz.QuizPost;
-import com.quiz.frontend.model.Quiz.QuizeGet;
+import com.quiz.frontend.model.Quiz.QuizGet;
 import com.quiz.frontend.model.JWTData;
 
 
@@ -82,12 +82,12 @@ public class quizeController {
     
 
 
-    private static void getEmployees(){
-        // getForObject(url, Quiz[].class)
-        final String uri = "http://localhost:8081/api/quiz/all";
-        RestTemplate restTemplate = new RestTemplate();
-        QuizeGet[] result = restTemplate.getForObject(uri, QuizeGet[].class);
-        // System.out.println(result[0].getQuizName());
-    }
+    // private static void getEmployees(){
+    //     // getForObject(url, Quiz[].class)
+    //     final String uri = "http://localhost:8081/api/quiz/all";
+    //     RestTemplate restTemplate = new RestTemplate();
+    //     QuizeGet[] result = restTemplate.getForObject(uri, QuizeGet[].class);
+    //     // System.out.println(result[0].getQuizName());
+    // }
    
 }

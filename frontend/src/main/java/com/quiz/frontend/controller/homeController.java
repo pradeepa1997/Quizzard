@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.quiz.frontend.model.Quiz.Quiz;
+import com.quiz.frontend.model.Quiz.QuizGet;
 import com.quiz.frontend.model.Quiz.QuizCategory;
 
 
@@ -30,7 +31,8 @@ public class homeController {
             return ("redirect:login");
         }
 
-        final Quiz[] quizes = restTemplate.getForObject(url, Quiz[].class);
+        final QuizGet[] quizes = restTemplate.getForObject(url, QuizGet[].class);
+        
         List<QuizCategory> quizesWithCategory = new ArrayList<QuizCategory>();
        
 
@@ -39,10 +41,12 @@ public class homeController {
         QuizCategory Arts = new QuizCategory("Arts");
         QuizCategory IT = new QuizCategory("IT");
         QuizCategory Other = new QuizCategory("Other");
+        
       
 
-        for (final Quiz quiz : quizes) {
-            System.out.println(quiz.getQuizCategory());
+        for (final QuizGet quiz : quizes) {
+            System.out.println(quiz.getQuizID());
+            System.out.println(quiz.getCreatorID());
             if(quiz.getQuizCategory().equals("Maths")){    
                 Maths.quizList.add(quiz);
             }else if(quiz.getQuizCategory().equals("Science")){    
@@ -61,11 +65,6 @@ public class homeController {
         quizesWithCategory.add(IT);
         quizesWithCategory.add(Other);
         model.addAttribute("quizes", quizesWithCategory);
-        // model.addAttribute("Science", Science);
-        // model.addAttribute("Arts", Arts);
-        // model.addAttribute("IT", IT);
-        // model.addAttribute("Other", Other);
-        // model.addAttribute("category", category);
         model.addAttribute("username",jwttoken.getUserName());
         return "home";
     }  

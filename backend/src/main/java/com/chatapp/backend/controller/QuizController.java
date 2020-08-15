@@ -24,7 +24,11 @@ public class QuizController {
 
     @GetMapping(value = "/all")
     public List<Quiz> getall() {
-        return quizrepo.findAll();
+        List<Quiz> temp=quizrepo.findAll();
+        for (final Quiz element : temp){
+            System.out.println(element.getQuizID());
+        }
+        return temp;
     }
     @PostMapping(value = "/add")
     public Integer add(@RequestBody final Quiz quiz) {
@@ -37,4 +41,5 @@ public class QuizController {
     public Optional<Quiz> getByID(@PathVariable final Integer id) {
         return quizrepo.findById(id);
     }
+    
 }

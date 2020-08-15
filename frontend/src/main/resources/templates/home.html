@@ -57,7 +57,7 @@
         </div>
         <div class="container pt-2">
             <div th:each="quizecat : ${quizes}" class="py-2">
-                <div class="card border border-secondary" style="background-color: transparent;">
+                <div class="card border border-secondary" style="background-color: transparent;" onclick="hell()">
                     <h4 class="text-white px-4 pt-3 m-0" th:text="${quizecat.category}"></h4>
                     <hr class="bg-secondary" style="margin-left: auto ; margin-right: auto ;width: 98%;">
                     <div class="row px-3">

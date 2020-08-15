@@ -4,7 +4,11 @@ function onLoad(){
         document.getElementById('alert')&&(document.getElementById('alert').style.display="none");
     },3000);
 }
+var message = "[[${message}]]";
+function hell(){
+    // var number = [[${number}]];
 
-function hell(  ){
-    console.log([[{quizList}]]);
+    
+    console.log(message);
+
 }

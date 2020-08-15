@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 @RequestMapping(value = "/api/question")
@@ -28,6 +30,17 @@ public class QuestionController {
         System.out.println(saved.getQuizID());
         return saved.getQuizID();
     }
+
+    @GetMapping(value = "/getByQuizId/{quizId}")
+    public List<Question> getByQuizID(@PathVariable final Integer quizId) {
+        List<Question> temp=questionrepo.findByQuizID(quizId);
+        return temp;
+    }
+    // @PostMapping(value = "/getByQuizId/{quizId}")
+    // public Integer getAllofQuiz(@RequestBody final Question question) {
+    //     return questionrepo.findByQuizID();
+       
+    // }
 
     
 }
