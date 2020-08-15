@@ -67,6 +67,7 @@ public class homeController {
         model.addAttribute("quizes", quizesWithCategory);
         model.addAttribute("username",jwttoken.getUserName());
         model.addAttribute("userID",jwttoken.getUserId());
+        model.addAttribute("searchList",quizes);
         return "home";
     }  
 }

@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d43d952765.js" crossorigin="anonymous"></script>
     <title> Quizzard - Home </title>
+    <style> #list li a:hover{ background-color: lightblue; }</style>
   </head>
   <body class="body-main">
     <div class="container-fluid p-0 m-0" >
@@ -56,11 +57,43 @@
                 <div class="pb-3 d-flex justify-content-center">
                     <img src="images/logo2.png" alt="logo" style="max-width: 380px;">
                 </div>
+                
                 <div class="searchbar shadow">
-                    <input class="search_input" type="text" name="" placeholder="Search for a game code...">
+                    <input type="text" class="search_input" id="searchInput" onkeyup="searchForQuiz()" placeholder="Search for a game code...">
                     <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
                 </div>
-            </div>
+
+                <ul id="list" class="px-5 mx-1">
+                    <div th:each="sr : ${searchList}">
+                        <li class="shadow" style="display: none;background: #eee;">
+                            <a class="p-2 text-dark border-bottom" style="display: block;font-size:18px;text-decoration:none;" href="#" th:text="${sr.quizName}"></a>
+                        </li>
+                    </div>
+                </ul>
+
+                <script>
+                function searchForQuiz() {
+                    var input, filter, ul, li, a, i, txtValue;
+                    input = document.getElementById("searchInput");
+                    filter = input.value.toUpperCase();
+                    ul = document.getElementById("list");
+                    li = ul.getElementsByTagName("li");
+                    for (i = 0; i < li.length; i++) {
+                        a = li[i].getElementsByTagName("a")[0];
+                        txtValue = a.textContent || a.innerText;
+                        // if(txtValue==""){
+                        //     li[i].style.display = "none";    
+                        // }
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            li[i].style.display = "";
+                        }else {
+                            li[i].style.display = "none";
+                        }
+                    }
+                }
+                </script>
+
+           </div>
         </div>
         <div class="container pt-2">
             <div th:each="quizecat : ${quizes}" class="py-2 ">
