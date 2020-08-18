@@ -15,3 +15,14 @@ function hell(a,b){
     console.log(a,b);
 
 }
+
+function hell2(a){
+    // var number = [[${number}]];
+    
+    document.getElementById("hell3").value=a;
+    // document.getElementById("quizlink").href="/attemptquiz/"+b;
+
+    
+    console.log("huuuuuuuuuu");
+
+}

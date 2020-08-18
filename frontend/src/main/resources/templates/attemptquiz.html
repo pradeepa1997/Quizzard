@@ -57,55 +57,54 @@
         <div style="padding-top: 65px;"></div>
         <div class="allquizflag" >
             <div class="atempt-box" th:each="bool : ${boolArray}">
-              <!-- <small th:if="${b}" th:text="'Something went wrong please try again'" class="text-danger"> </small> -->
                 <div class="atempt-box-inner" th:if="${bool}" ></div>
             </div>
         </div>
-        <!-- <form style="color:white !important"> 
-            
-        </form> -->
+
         <div class="addquiz-card">
             <h3 class="addquiz-header" th:text="${quiz.quizName}"></h3>
-          <form class="form" action="#"   method="post">
+            
+        <form class="form" action="#"   method="post" th:action="@{${'/attemptquiz/'+quiz.quizID+'/'+nextQuestion}}" th:object="${answer}">
             <div class="row" style="width: 100% !important;">
-                <h2 th:text="${question.description}"></h2>
+                <h3 th:text="${question.description}"></h3>
             </div>
-            
-            
-            
-            
-            <fieldset class="form-group">
-                <div class="row" >
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                        <label class="form-check-label" for="gridRadios1" th:text="${question.choice1}">
-                            
-                        </label>
-                        </div>
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                        <label class="form-check-label" for="gridRadios2" th:text="${question.choice2}">
-                        </label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                            <label class="form-check-label" for="gridRadios2" th:text="${question.choice3}">
-                                
-                            </label>
-                        </div>
-                        <div class="form-check disabled">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" >
-                        <label class="form-check-label" for="gridRadios3" th:text="${question.choice4}">
-                        </label>
-                        </div>
-                    </div>
+                <div class="custom-control custom-radio" >
+                    <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios"
+                     th:attr="onclick=|hell2(1)|" />
+                    <label class="custom-control-label" for="defaultGroupExample1" th:text="${question.choice1}"></label>
                 </div>
-            </fieldset>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" 
+                    th:attr="onclick=|hell2(2)|"
+                    >
+                    <label class="custom-control-label" for="defaultGroupExample2" th:text="${question.choice2}"></label>
+                </div>
+                  
+                  
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios" 
+                    th:attr="onclick=|hell2(3)|"
+                    >
+                    <label class="custom-control-label" for="defaultGroupExample3" th:text="${question.choice3}"></label>
+                  </div>
+                  
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultGroupExample4" name="groupOfDefaultRadios" 
+                    th:attr="onclick=|hell2(4)|"
+                    >
+                    <label class="custom-control-label" for="defaultGroupExample4" th:text="${question.choice4}"></label>
+                  </div>
+                  <input id="hell3" th:field="${answer.answer}"/>
             <div class="btn-center">
-                <small   class="text-danger"> </small>
-                  <button type="submit" class="btn btn-primary">Create</button>
+                <a type="button" th:if="${previous}" class="btn btn-primary" 
+                
+                    th:href="${'/attemptquiz/'+quiz.quizID+'/'+preQuestion}">
+                    Previous
+                </a>
+                <button type="submit" th:if="${finish}" class="btn btn-primary" >Finished</button>
+                <button type="submit" th:if="${next}" class="btn btn-primary">Next</button>
               </div>
-          </form>
+        </form>
         </div>
         
     </div>
