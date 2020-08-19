@@ -6,6 +6,7 @@ import com.quiz.frontend.model.User.ForgotUser;
 import com.quiz.frontend.model.User.LoginUser;
 import com.quiz.frontend.model.User.RegisterUser;
 import com.quiz.frontend.model.User.ResetUser;
+import com.quiz.frontend.model.User.User;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.quiz.frontend.model.JWTData;
 
 @Controller
@@ -185,8 +188,17 @@ public class authController {
             try{
 
                 jwttoken.setToken(res.get("token")+"");
-                System.out.println(jwttoken.getUserName());
-                return ("redirect:home");
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n" + jwttoken.getUserName()+ "\n\n\n\n\n\n\n\n\n");
+                
+                final String userUrl = "http://localhost:8081/api/users/" + jwttoken.getUserId();
+                final Object[] obj = restTemplate.getForObject(userUrl, Object[].class );
+                ObjectMapper mapper = new ObjectMapper();
+                User userLog = mapper.convertValue(obj[0], User.class);
+                if(userLog.getUserType().equals("user")){
+                    return ("redirect:home");
+                }else{
+                    return ("redirect:adminpanel");
+                }
 
             }catch(Exception e){
 
