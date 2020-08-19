@@ -21,8 +21,7 @@ public class Quiz {
     @Column(name="creatorID")
     private Integer creatorID;
     
-
-
+    
     public void setCreatorID(Integer creatorID) {
         this.creatorID = creatorID;
     }

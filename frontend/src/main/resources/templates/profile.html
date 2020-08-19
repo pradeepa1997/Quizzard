@@ -65,16 +65,18 @@
                 <h5 class="text-white px-3 pt-3"> Your Quizes </h5>
                 <div class="row px-3">
                     <div  class="col-md-3" th:each="quizlist : ${quiz}">
-                        <div data-toggle="modal" data-target="#quiz-card">
-                            <div class="card shadow  quiz-hover">
-                                <div class="card header">
-                                    <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
-                                </div>
-                                <div class="card-body bg info">
-                                    <h6 class="text-center m-0"  th:text="${quizlist.quizName}"></h6>
-                                </div>
-                            </div> 
-                        </div>     
+                        <div class="pb-3">
+                            <div data-toggle="modal" data-target="#quiz-card">
+                                <div class="card shadow  quiz-hover">
+                                    <div class="card header">
+                                        <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
+                                    </div>
+                                    <div class="card-body bg info">
+                                        <h6 class="text-center m-0"  th:text="${quizlist.quizName}"></h6>
+                                    </div>
+                                </div> 
+                            </div>     
+                        </div>
                     </div>
                 </div>
                 <h5 class="text-white px-3 pt-3"> Answered Quizes </h5>

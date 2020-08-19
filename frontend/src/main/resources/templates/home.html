@@ -14,6 +14,11 @@
     <style> #list li a:hover{ background-color: lightblue; }</style>
   </head>
   <body class="body-main">
+      
+    <div style="background-image:url('https://www.creativeclique.co.za/wp-content/uploads/2019/01/Ridge-Design-Website-Design-Background.jpg');position: fixed;background-repeat: no-repeat;background-position: center;background-attachment: fixed;background-size: cover;height:100vh">
+        <div style="background: rgba(34,34,51,0.95);width:100vw;height:100vh">
+        </div>
+    </div>
     <div class="container-fluid p-0 m-0" >
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
@@ -28,6 +33,9 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active pr-3">
                             <a class="nav-link text-muted" href="/home"><i class="fas fa-home pr-1"></i> Home</a>
+                        </li>
+                        <li class="nav-item active pr-3">
+                            <a href="/addquiz" class="nav-link text-muted"><i class="fas fa-calendar-plus pr-2"></i>Create Quiz</a>
                         </li>
                     </ul>
 
@@ -81,9 +89,6 @@
                     for (i = 0; i < li.length; i++) {
                         a = li[i].getElementsByTagName("a")[0];
                         txtValue = a.textContent || a.innerText;
-                        // if(txtValue==""){
-                        //     li[i].style.display = "none";    
-                        // }
                         if (txtValue.toUpperCase().indexOf(filter) > -1) {
                             li[i].style.display = "";
                         }else {
@@ -113,14 +118,13 @@
                         <div class="row px-3">
                             
                             <div class="col-md-3" th:each="quiz : ${quizecat.quizList}"  >
-                                <div class="pb-3" data-toggle="modal" data-target="#quiz-card" 
-                                th:attr="onclick=|hell('${quiz.quizName}','${quiz.quizID}')|">
+                                <div class="pb-3" data-toggle="modal" data-target="#quiz-card" th:attr="onclick=|hell('${quiz.quizName}','${quiz.quizID}')|">
                                     <div class="card shadow quiz-hover">
                                         <div class="card header">
                                             <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
                                         </div>
                                         <div class="card-body bg info">
-                                            <h6 class="text-center m-0"  th:text="${quiz.quizName+'hiiiiiiiiiiiii'}"></h6>
+                                            <h6 class="text-center m-0 text-dark" th:text="${quiz.quizName}"> </h6>
                                         </div>
                                     </div>
                                 </div>     

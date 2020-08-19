@@ -38,6 +38,7 @@ public class QuizController {
     }
     @PostMapping(value = "/add")
     public Integer add(@RequestBody final Quiz quiz) {
+        System.out.println("\n\n\n\n\nPAA PIMPIYA\n\n\n\n\n\n");
         System.out.println(quiz.getCreatorID()+quiz.getQuizCategory()+quiz.getQuizID()+quiz.getQuizName());
         Quiz saved=quizrepo.save(quiz);
         System.out.println(saved.getQuizID());
@@ -45,8 +46,6 @@ public class QuizController {
     }
     @GetMapping(value = "/{id}")
     public Questions getByID(@PathVariable final Integer id) {
-
-        // Quiz q= ;
 
         try{
             List<Question> questions=questionrepo.findByQuizID(id);
