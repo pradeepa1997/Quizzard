@@ -1,14 +1,13 @@
 .addquiz-card{
     position: absolute;
     background-color: white;
-    height: 450px;
+    height: 400px;
     width: 420px;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 10%;
     margin-left: calc(50% - 210px);
     border-radius: 20px;
     padding: 30px;
-    /* box-shadow: 0 4px 8px 0 white, 0 6px 20px 0 white; */
 }
 
 .addquiz-header{
@@ -35,10 +34,10 @@
 .addquestion-card{
     position: absolute;
     background-color: white;
-    height: 630px;
+    height: 580px;
     width: 520px;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 100px;
     margin-left: calc(50% - 260px);
     border-radius: 20px;
     padding: 30px;

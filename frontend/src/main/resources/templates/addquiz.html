@@ -10,11 +10,14 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+    <script src="https://kit.fontawesome.com/d43d952765.js" crossorigin="anonymous"></script>
     <title> Quizzard </title>
   </head>
   <body onload="onLoad()">
-    
+    <div style="background-image:url('https://www.creativeclique.co.za/wp-content/uploads/2019/01/Ridge-Design-Website-Design-Background.jpg');position: fixed;background-repeat: no-repeat;background-position: center;background-attachment: fixed;background-size: cover;height:100vh">
+      <div style="background: rgba(34,34,51,0.95);width:100vw;height:100vh">
+      </div>
+    </div>
     <div class="container-fluid p-0 m-0" >
       <nav class="navbar navbar-expand-lg navbar-light bg-light " >
           <div class="container">
@@ -28,20 +31,27 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                       <li class="nav-item active pr-3">
-                          <a class="nav-link text-muted" href="/home"><i class="fas fa-home pr-1"></i> Home</a>
-                      </li>
-                      <li class="nav-item pr-3">
-                      <a class="nav-link" href="/activity"> <i class="fas fa-history pr-1"></i> activity </a>
-                      </li>
+                        <a class="nav-link text-muted" href="/home"><i class="fas fa-home pr-1"></i> Home</a>
+                    </li>
                   </ul>
 
                   <ul class="navbar-nav ml-auto ">
-                      <li class="nav-item active pr-3">
-                          <div class="row">
-                              <img class="rounded-circle" style="max-width: 40px;height:40px"src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="user">
-                              <a class="nav-link" href="#"> <strong> Sample User </strong> </a>    
-                          </div>
-                      </li>
+                    <li class="nav-item active pr-3">
+                        <div class="row">
+                            <img class="rounded-circle" style="max-width: 30px;height:30px;margin-top: 5px;"src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="user">
+                            
+                            <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle" th:text="${username}" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  User Name
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" th:href="${'/profile/' + userID}">Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                   </ul>
               </div>
           </div>
@@ -49,13 +59,13 @@
     </div>
     <div class="container-fluid p-0 m-0" style="height: 100vh;background-color: #223;">
       <!-- <h1>Hello world</h1> -->
-      <div class="addquiz-card">
-        
+      <div class="outer">
+        <div class="addquiz-card bg-light">      
           <h3 class="addquiz-header">Create Your quiz in Quizzard</h3>
           <form class="form" action="#" th:action="@{/addquiz}" th:object="${quiz}" method="post">
             <div class="form-group row form-group-1">
                 
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <label for="exampleInputPassword1">Select Your Quiz Category</label>
                     <select class="custom-select" id="quizeCategory" th:field="*{quizeCategory}" required onchange="changedisblity(event)">
                         <option selected th:value="''" th:text="Choose..."></option>
@@ -66,24 +76,28 @@
                         <option th:value="'other'" th:text="other">other</option>
                     </select>
                 </div >
-                <div class="col-md-4">
-                    <label for="othertype" style="color: white;">a</label>
-                    <input type="text" class="form-control" id="othertype" placeholder="Enter Type" th:field="*{other}" disabled >      
+                <div class="col-md-5 pt-4 ">
+                    <input type="text" class="form-control mt-2" id="othertype" placeholder="Enter Type" th:field="*{other}" disabled >      
                 </div>     
               </div>
             
             <div class="form-group form-group-1">
               <label for="quizname">Quiz Name</label>
-              <input type="text" class="form-control" id="quizname" placeholder="Ex:Myquize" th:field="*{quizName}" required>
+              <input type="text" class="form-control" id="quizname" placeholder="Ex: Myquiz" th:field="*{quizName}" required>
             </div>
             
             <div class="btn-center">
               <small th:if="${error}" th:text="'Something went wrong please try again'" class="text-danger"> </small>
-                <button type="submit" class="btn btn-primary">Create</button>
+              <div class="d-flex justify-content-center">
+                <div class="col-md-6">
+                  <button type="submit" class="btn btn-primary btn-block">Create</button>
+                </div>
+              </div>  
             </div>
-            
           </form>
+        </div>
       </div>
+      
     </div>  
     <script src="javascript/addquize.js"></script>
   </body>

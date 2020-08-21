@@ -11,6 +11,7 @@ public class JWTData{
     private static String token="";
     private static String userName="";
     private static String email="";
+    // private static String userType="";
     private static Integer userId=-1;
     
 
@@ -34,6 +35,9 @@ public class JWTData{
     public String getEmail(){
         return email;
     }
+    // public String getuserType(){
+    //     return userType;
+    // }
     public boolean isLog(){
         if(token.equals("")){
             return false;
