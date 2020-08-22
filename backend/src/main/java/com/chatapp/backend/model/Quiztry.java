@@ -17,19 +17,22 @@ public class Quiztry {
     @Column(name="quizID")
     private Integer quizID;
     @Column(name="marks")
-    private Integer marks;
+    private Double marks;
 
-    Quiztry(Integer user,Integer quize,Integer mark){
+    Quiztry(Integer user,Integer quize,Double mark){
         this.userID=user;
         this.quizID=quize;
         this.marks=mark;
+    }
+    Quiztry(){
+        
     }
 
 
     public Integer getId() {
         return id;
     }
-    public Integer getMarks() {
+    public Double getMarks() {
         return marks;
     }
     public Integer getQuizID() {
@@ -41,7 +44,7 @@ public class Quiztry {
     public void setId(Integer id) {
         this.id = id;
     }
-    public void setMarks(Integer marks) {
+    public void setMarks(Double marks) {
         this.marks = marks;
     }
     public void setQuizID(Integer quizID) {

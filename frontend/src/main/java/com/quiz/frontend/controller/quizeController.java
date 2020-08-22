@@ -5,6 +5,7 @@ import com.quiz.frontend.model.Question.Question;
 import com.quiz.frontend.model.Question.QuestionAtempt;
 import com.quiz.frontend.model.Quiz.Quiz;
 import com.quiz.frontend.model.Quiz.QuizAnswer;
+import com.quiz.frontend.model.Quiz.QuizMark;
 import com.quiz.frontend.model.Quiz.QuizPost;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class quizeController {
     JWTData jwttoken=new JWTData();
     static public QuestionAtempt questionAtempt;
     static public List<Integer> answers=new ArrayList<Integer>();
+    // static public String qid;
 
     @GetMapping(value = "/addquiz")
     public String addQuiz(final Model model) {
@@ -145,8 +147,6 @@ public class quizeController {
     @RequestMapping("/finishquiz")
     public String finishQuiz(){
         System.out.println("\n\n\n\n\n\n\n\n");
-        // System.out.println(answer.getAnswer());
-        // answers.set(questionAtempt.getQuestions().size()-1,Integer.parseInt(answer.getAnswer()));
         for (int i=0;i<questionAtempt.getQuestions().size();i++){
             System.out.println(answers.get(i)+"000000000000000000000000");
         }
@@ -155,9 +155,7 @@ public class quizeController {
 
     @RequestMapping("/finalmark")
     public String finalMark(final Model model){
-        System.out.println("\n\n\n\n\n\n\n\n");
-        // System.out.println(answer.getAnswer());
-        // answers.set(questionAtempt.getQuestions().size()-1,Integer.parseInt(answer.getAnswer()));
+
         int count=0;
         for (int i=0;i<questionAtempt.getQuestions().size();i++){
             System.out.println(answers.get(i)+"  ---------------  " + questionAtempt.getQuestions().get(i).getCorrectAns());
@@ -165,6 +163,16 @@ public class quizeController {
                 count++;
             }
         }
+        final String url = "http://localhost:8081/api/quiztry/add";
+        
+        RestTemplate restTemplate = new RestTemplate();
+        QuizMark quizMark=new QuizMark();
+        Double mark=Double.valueOf(count)/Double.valueOf(questionAtempt.getQuestions().size())*100.0;
+        quizMark.setMarks(mark);
+        quizMark.setQuizID(questionAtempt.getQuestions().get(0).getQuizID());
+        quizMark.setUserID(jwttoken.getUserId());
+        String result=restTemplate.postForObject(url,quizMark,String.class);
+        System.out.print(result);
         model.addAttribute("count",count);
         return "finalMarks";   
     }

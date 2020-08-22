@@ -1,6 +1,7 @@
 package com.chatapp.backend.controller;
 
 import com.chatapp.backend.model.Quiztry;
+import com.chatapp.backend.repository.Quiztryrepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,15 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/quiztry/")
+@RequestMapping(value = "/api/quiztry")
 public class QuiztryController {
     @Autowired
-    QuiztryController quiztryController;
+    Quiztryrepo quiztryrepo;
 
+
+    // @PostMapping(value = "/add")
+    // public String addNewUser(@RequestBody final User user) {
+    //     System.out.println(user.getEmail());
+    //     usersrepo.save(user);
+    //     return "User added"; 
+    // }
     @PostMapping(value = "/add")
     public String add(@RequestBody final Quiztry quiztry) {
-        System.out.println(quiztry.getQuizID()+quiztry.getUserID()+quiztry.getMarks()+quiztry.getId());
-        quiztryController.add(quiztry);
+        System.out.println("\n\n\n\n\\n\n\njjjjjj");
+        System.out.println(quiztry.getMarks());
+        // System.out.println(quiztry.getQuizID()+quiztry.getUserID()+quiztry.getMarks()+quiztry.getId());
+        quiztryrepo.save(quiztry);
         return "Done";
     }
     // @PostMapping(value = "/add")
