@@ -73,8 +73,8 @@
 
                 <ul id="list" class="px-5 mx-1">
                     <div th:each="sr : ${searchList}">
-                        <li class="shadow" style="display: none;background: #eee;">
-                            <a class="p-2 text-dark border-bottom" style="display: block;font-size:18px;text-decoration:none;" href="#" th:text="${sr.quizName}"></a>
+                        <li class="shadow" style="display: none;background: #eee;cursor: pointer;" th:attr="onclick=|hell('${sr.quizName}','${sr.quizID}')|">
+                            <a class="p-2 text-dark border-bottom" style="display: block;font-size:18px;text-decoration:none;" th:text="${sr.quizName}"></a>
                         </li>
                     </div>
                 </ul>
@@ -136,7 +136,7 @@
             </div>
             
 
-            <div class="modal fade" id="quiz-card" tabindex="-1" role="dialog" aria-labelledby="quiz-cardTitle" aria-hidden="true">
+            <div class="modal fade" id="quiz-card" tabindex="-1" style="z-index: 9999;" role="dialog" aria-labelledby="quiz-cardTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

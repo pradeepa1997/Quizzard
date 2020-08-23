@@ -6,18 +6,131 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/attemptquiz.css">
     <link rel="stylesheet" href="/css/addquiz.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d43d952765.js" crossorigin="anonymous"></script>
-    <title> Quizzard - Home </title>
+    <title> Quiz Attempt </title>
   </head>
   <body class="body-main">
+    <div style="background-image:url('https://www.creativeclique.co.za/wp-content/uploads/2019/01/Ridge-Design-Website-Design-Background.jpg');position: fixed;background-repeat: no-repeat;background-position: center;background-attachment: fixed;background-size: cover;height:100vh">
+        <div style="background: rgba(34,34,51,0.95);width:100vw;height:100vh">
+        </div>
+    </div>
     <div class="container-fluid p-0 m-0" >
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed;width: 100%;z-index: 10;" >
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand pr-5" href="/">
+                    <img src="/images/logo2.png" alt="logo" style="max-width: 80px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active pr-3">
+                            <a class="nav-link text-muted" href="/home"><i class="fas fa-home pr-1"></i> Home</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto ">
+                        <li class="nav-item active pr-3">
+                            <div class="row">
+                                <img class="rounded-circle" style="max-width: 30px;height:30px;margin-top: 5px;"src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg" alt="user">
+                                
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" th:text="${username}" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      User Name
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" th:href="${'/profile/' + userID}">Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="d-flex justify-content-center mt-3">
+            <div class="col-9">
+                <hr class="bg-light">
+                <h2 class="text-light text-center" th:text="${quiz.quizName}"></h2>
+                <hr class="bg-light">
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <div class="card shadow mb-3" >
+                            <div class="card-header bg-primary px-2">
+                                <h5 class="mb-0" style="font-weight: bold;">Quiz Completion</h5>
+                            </div>
+                            <div class="card-body" style="background-color: #223;">
+                                <div class="row">
+                                    <div class="atempt-box" style="border-color: royalblue;" th:each="bool : ${boolArray}">
+                                        <div class="atempt-box-inner" th:if="${bool}" ></div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card shadow">
+                            <div class="card-header row px-0 mx-0 bg-primary">
+                                <h5 class="mb-0" style="font-weight: bold;"> &ensp; Question : &ensp; </strong> </h5>
+                                <h5 class="mb-0" style="font-weight: bold;" th:text="${question.description} + '?'"></h5>
+                            </div>
+                            <div class="card-body" style="background-color:#223;">
+                                <div class="row text-white d-flex justify-content-center">
+                                    <div class="col-5 m-2">
+                                        <h6 class="pl-2"> Answer 1 :</h6>
+                                        <div class="card bg-primary quiz-hover px-3 py-2" style="min-height: 50px;" th:attr="onclick=|hell2(1)|">
+                                            <h6 th:text="${question.choice1}"> </h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 m-2">
+                                        <h6 class="pl-2"> Answer 2 :</h6>
+                                        <div class="card bg-primary quiz-hover px-3 py-2" style="min-height: 50px;" th:attr="onclick=|hell2(2)|">
+                                            <h6 th:text="${question.choice2}"> </h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 m-2">
+                                        <h6 class="pl-2"> Answer 3 :</h6>
+                                        <div class="card bg-primary quiz-hover px-3 py-2" style="min-height: 50px;" th:attr="onclick=|hell2(3)|">
+                                            <h6 th:text="${question.choice3}"> </h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 m-2">
+                                        <h6 class="pl-2"> Answer 4 :</h6>
+                                        <div class="card bg-primary quiz-hover px-3 py-2" style="min-height: 50px;" th:attr="onclick=|hell2(4)|">
+                                            <h6 th:text="${question.choice4}"> </h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 px-2">
+                                        <form class="form" action="#"   method="post" th:action="@{${'/attemptquiz/'+quiz.quizID+'/'+nextQuestion}}" th:object="${answer}">
+                                            <h6> Submit Answer? </h6>    
+                                            <input id="hell3" class="form-control"th:field=" ${answer.answer}"  style="background:none;border:none;border-bottom:1.5px solid #434a52;border-radius:0;" />
+                                            <div class="btn-center">
+                                                <a type="button" th:if="${previous}" style="width: 25%;" class="btn btn-primary m-1" th:href="${'/attemptquiz/'+quiz.quizID+'/'+preQuestion}"> Previous </a>
+                                                <button type="submit" th:if="${finish}" style="width: 25%;"  class="btn btn-primary m-1" >Finish Quiz </button>
+                                                <button type="submit" th:if="${next}" style="width: 25%;"  class="btn btn-primary m-1">Next</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>  
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed;width: 100%;z-index: 10;" >
             <div class="container" >
                 <a class="navbar-brand pr-5" href="/">
                     <img src="/images/logo2.png" alt="logo" style="max-width: 80px;">
@@ -54,10 +167,12 @@
                 </div>
             </div>
         </nav>
+    
         <div style="padding-top: 65px;"></div>
         <div class="allquizflag" >
             <div class="atempt-box" th:each="bool : ${boolArray}">
                 <div class="atempt-box-inner" th:if="${bool}" ></div>
+                </div>    
             </div>
         </div>
 
@@ -105,10 +220,9 @@
                 <button type="submit" th:if="${next}" class="btn btn-primary">Next</button>
               </div>
         </form>
-        </div>
+        </div> -->
         
     </div>
     <script src="/javascript/addquestion.js"></script>  
   </body>
-
 </html>

@@ -7,7 +7,6 @@ function onLoad(){
 // var message = "[[${message}]]";
 function hell(a,b){
     // var number = [[${number}]];
-    
     document.getElementById("modaltittle").innerHTML=a;
     document.getElementById("quizlink").href="/attemptquiz/"+b;
 
@@ -21,8 +20,5 @@ function hell2(a){
     
     document.getElementById("hell3").value=a;
     // document.getElementById("quizlink").href="/attemptquiz/"+b;
-
-    
-    console.log("huuuuuuuuuu");
 
 }
