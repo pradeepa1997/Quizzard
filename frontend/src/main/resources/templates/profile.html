@@ -13,6 +13,10 @@
     <title> Quizzard - Profile </title>
   </head>
   <body class="body-main">
+    <div style="background-image:url('https://www.creativeclique.co.za/wp-content/uploads/2019/01/Ridge-Design-Website-Design-Background.jpg');position: fixed;background-repeat: no-repeat;background-position: center;background-attachment: fixed;background-size: cover;height:100vh">
+        <div style="background: rgba(34,34,51,0.95);width:100vw;height:100vh">
+        </div>
+    </div>
     <div class="container-fluid p-0 mr-0">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
@@ -62,39 +66,82 @@
         </nav>
         <div class="container-fluid row pt-5">
             <div class="col-md-9 ">
-                <h5 class="text-white px-3 pt-3"> Your Quizes </h5>
-                <div class="row px-3">
-                    <div  class="col-md-3" th:each="quizlist : ${quiz}">
-                        <div class="pb-3">
-                            <div data-toggle="modal" data-target="#quiz-card">
-                                <div class="card shadow  quiz-hover">
-                                    <div class="card header">
-                                        <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
-                                    </div>
-                                    <div class="card-body bg info">
-                                        <h6 class="text-center m-0"  th:text="${quizlist.quizName}"></h6>
-                                    </div>
-                                </div> 
-                            </div>     
+                <div class="card border border-secondary" style="background-color: transparent;" >
+                    <div class="card-header" style="cursor: pointer;" data-toggle="collapse" data-target="#collapse" aria-expanded="true" >
+                        <div class="row px-0">
+                            <div class="col-1 border-right">
+                                <img src="../images/logo2.png" alt="logo" style="max-width: 50px;">
+                            </div>
+                            <div class="col-11 row mx-0 px-0 d-flex justify-content-between text-white">
+                                <h4 class="px-4 m-0"> Posted Quizes </h4>
+                                <h5 class="px-4 m-0"> <i class="fa fa-chevron-down" aria-hidden="true"></i></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body collapse show" id="collapse">
+                        <div class="row px-3">
+                            <div  class="col-md-3 m-0 px-2" th:each="quizlist : ${quiz}">
+                                <div class="pb-3">
+                                    <div class="card shadow  quiz-hover" style="cursor:default;">
+                                        <div class="card header">
+                                            <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
+                                        </div>
+                                        <div class="card-body bg info">
+                                            <h6 class="text-center m-0 bolder"  th:text="${quizlist.quizName}"></h6>
+                                            <hr class="m-1 p-0">
+                                            <h6 class="text-center text-muted m-0 mb-2" style="font-size:13px;"  th:text="${quizlist.quizCategory}"></h6>
+                                            <div class="row m-0 p-0">
+                                                <div class="col-6 m-0 p-1">
+                                                    <a class="btn btn-info btn-block btn-sm" th:href="@{${'/quiz/'+ userID + '/' + quizlist.quizID }}">
+                                                        <h6 class="m-0" style="font-size: 13px;">View</h6>
+                                                    </a>
+                                                </div>
+                                                <div class="col-6 m-0 p-1">
+                                                    <button class="btn btn-danger btn-block btn-sm">
+                                                        <h6 class="m-0" style="font-size: 13px;">Delete</h6>
+                                                    </button>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <h5 class="text-white px-3 pt-3"> Answered Quizes </h5>
-                <div class="row px-3">
-                    <div th:each="trylist : ${try}">
-                        <div class="col-md-3 p-3">
-                            <div class="card shadow  quiz-hover">
-                                <div class="card header">
-                                    <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
+                <div class="card border border-secondary mt-3" style="background-color: transparent;" >
+                    <div class="card-header" style="cursor: pointer;" data-toggle="collapse" data-target="#collapseAnswered" aria-expanded="true">
+                        <div class="row px-0">
+                            <div class="col-1 border-right">
+                                <img src="../images/logo2.png" alt="logo" style="max-width: 50px;">
+                            </div>
+                            <div class="col-11 row mx-0 px-0 d-flex justify-content-between text-white">
+                                <h4 class="px-4 m-0"> Answered Quizes </h4>
+                                <h5 class="px-4 m-0"> <i class="fa fa-chevron-down" aria-hidden="true"></i></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body collapse show" id="collapseAnswered">
+                        <div class="row px-3">
+                            <div  class="col-md-3 m-0 px-2" th:each="trylist : ${try}">
+                                <div class="pb-3">
+                                    <div data-toggle="modal" data-target="#quiz-card">
+                                        <div class="card shadow  quiz-hover">
+                                            <div class="card header">
+                                                <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
+                                            </div>
+                                            <div class="card-body bg info">
+                                                <!-- <h6 class="text-center m-0"  th:text="${quizlist.quizName}"></h6> -->
+                                            </div>
+                                        </div> 
+                                    </div>     
                                 </div>
-                                <div class="card-body bg info">
-                                    <h6 class="text-center m-0"  th:text="${try.quizID}"></h6>
-                                    <h4 class="text-center m-0"  th:text="${try.marks}"></h4>
-                                </div>
-                            </div> 
-                        </div>     
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
             <div class="col-md-3">
                 <div class="card shadow">
@@ -114,10 +161,10 @@
                                 </div>
                                 <div class="text-muted py-2">
                                     <h6 th:text="${user.email}"></h6>
-                                    <div class="row pl-3">
+                                    <div class="row pt-2 pl-3">
                                         <p th:text="${quizCount}"></p> <p>&ensp;Quiz(es) Posted</p>
                                     </div>
-                                    <div class="row pl-3">
+                                    <div class="row pl-3" style="margin-top: -12px;">
                                         <p th:text="${tryCount}"></p> <p>&ensp;Quiz(es) Answered</p>
                                     </div>    
                                 </div>

@@ -39,6 +39,25 @@ public class quizeController {
         model.addAttribute("username",jwttoken.getUserName());
         return "addquiz"; 
     }
+
+    @GetMapping("/quiz/{userId}/{quizId}")
+    public String ViewQuiz(@PathVariable final Integer userId, @PathVariable final Integer quizId,final Model model){
+        if(!jwttoken.isLog()){
+            return ("redirect:login");
+        }
+        final String url = "http://localhost:8081/api/quiz/" + quizId;
+        final RestTemplate restTemplate = new RestTemplate();
+        final QuestionAtempt quiz = restTemplate.getForObject(url, QuestionAtempt.class);
+        
+        model.addAttribute("username",jwttoken.getUserName());
+        model.addAttribute("userID",jwttoken.getUserId());
+        model.addAttribute("quizName",quiz.getQuiz().getQuizName());
+
+        // System.out.println("\n\n\n\n\n\n\n\n\n"+ quiz.getQuestions() +"\n\n\n\n\n");
+
+        return ( "userQuizes");
+    }
+
     
     @PostMapping("/addquiz")
     public String addQuizSubmit(@ModelAttribute QuizPost quizPost,final Model model){
@@ -144,6 +163,7 @@ public class quizeController {
             return ("redirect:/attemptquiz/"+quizid+"/"+(question));   
         }
     }
+   
     @RequestMapping("/finishquiz")
     public String finishQuiz(){
         System.out.println("\n\n\n\n\n\n\n\n");
