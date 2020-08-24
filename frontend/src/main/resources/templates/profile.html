@@ -86,13 +86,13 @@
                                         <div class="card header">
                                             <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
                                         </div>
-                                        <div class="card-body bg info">
+                                        <div class="card-body bg primary">
                                             <h6 class="text-center m-0 bolder"  th:text="${quizlist.quizName}"></h6>
                                             <hr class="m-1 p-0">
                                             <h6 class="text-center text-muted m-0 mb-2" style="font-size:13px;"  th:text="${quizlist.quizCategory}"></h6>
                                             <div class="row m-0 p-0">
                                                 <div class="col-6 m-0 p-1">
-                                                    <a class="btn btn-info btn-block btn-sm" th:href="@{${'/quiz/'+ userID + '/' + quizlist.quizID }}">
+                                                    <a class="btn btn-primary btn-block btn-sm" th:href="@{${'/quiz/'+ userID + '/' + quizlist.quizID }}">
                                                         <h6 class="m-0" style="font-size: 13px;">View</h6>
                                                     </a>
                                                 </div>
@@ -130,7 +130,7 @@
                                             <div class="card header">
                                                 <img src="../images/back2.jpg" style="width:100%;height: auto;" alt="">
                                             </div>
-                                            <div class="card-body bg info">
+                                            <div class="card-body bg primary">
                                                 <!-- <h6 class="text-center m-0"  th:text="${quizlist.quizName}"></h6> -->
                                             </div>
                                         </div> 
@@ -144,8 +144,8 @@
 
             </div>
             <div class="col-md-3">
-                <div class="card shadow">
-                    <div class="card-header bg-primary text-white">
+                <div class="card shadow" style="border:none;border-radius:8px">
+                    <div class="card-header bg-primary text-white" style="border-radius: 8px 8px 0px 0px;">
                         <h6 class="text-center mb-0"> Profile Details </h6>
                     </div>
                     <div class="card-body" style="font-size: 13px;">
@@ -209,7 +209,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                   <h5 class="text-white my-0"> Edit Profile information</h5>
+                   <h5 class="text-white my-0"> Edit Profile primaryrmation</h5>
                 </div>
                 <div class="modal-body">
                     <form class="form" action="#" th:action="@{/updateUser}" th:object="${user}" method="POST">

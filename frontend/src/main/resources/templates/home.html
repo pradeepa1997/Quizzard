@@ -116,7 +116,6 @@
                     </div>
                     <div class="card-body collapse" th:id="'collapse' + ${quizecat.category}">
                         <div class="row px-3">
-                            
                             <div class="col-md-3" th:each="quiz : ${quizecat.quizList}"  >
                                 <div class="pb-3" data-toggle="modal" data-target="#quiz-card" th:attr="onclick=|hell('${quiz.quizName}','${quiz.quizID}')|">
                                     <div class="card shadow quiz-hover">

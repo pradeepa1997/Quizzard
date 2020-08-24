@@ -49,11 +49,21 @@ public class quizeController {
         final RestTemplate restTemplate = new RestTemplate();
         final QuestionAtempt quiz = restTemplate.getForObject(url, QuestionAtempt.class);
         
-        model.addAttribute("username",jwttoken.getUserName());
-        model.addAttribute("userID",jwttoken.getUserId());
-        model.addAttribute("quizName",quiz.getQuiz().getQuizName());
 
-        // System.out.println("\n\n\n\n\n\n\n\n\n"+ quiz.getQuestions() +"\n\n\n\n\n");
+        List<Question> questions = new ArrayList<Question>();
+        for(int i=0;i<quiz.getQuestions().size();i++){
+            questions.add(quiz.getQuestions().get(i));
+        }
+
+        model.addAttribute("username",jwttoken.getUserName());
+        model.addAttribute("userID",jwttoken.getUserId());  
+        model.addAttribute("quizName",quiz.getQuiz().getQuizName());
+        model.addAttribute("quizCategory",quiz.getQuiz().getQuizCategory());
+        model.addAttribute("quizSize",quiz.getQuestions().size());
+        model.addAttribute("questions",questions);
+        
+
+        System.out.println("\n\n\n\n\n\n\n\n\n"+ questions.get(0).getDescription() +"\n\n\n\n\n");
 
         return ( "userQuizes");
     }
@@ -111,7 +121,6 @@ public class quizeController {
         
     }
     
-    
     @GetMapping("/attemptquiz/{quizid}/{question}")
     public String AttemptQuiz(@PathVariable final Integer quizid,@PathVariable final Integer question,final Model model){
         
@@ -150,8 +159,7 @@ public class quizeController {
         return "attemptquiz";   
         
     }
-   
-   
+    
     @PostMapping("/attemptquiz/{quizid}/{question}")
     public String saveAnswer(@PathVariable final Integer quizid,@PathVariable final Integer question,@ModelAttribute QuizAnswer answer){
 
@@ -199,7 +207,6 @@ public class quizeController {
     
     @GetMapping("/attemptquiz/{id}")
     public String AttemptQuiz(@PathVariable final Integer id,final Model model){
-
         final String url = "http://localhost:8081/api/quiz/"+id;
         System.out.println(id);
         RestTemplate restTemplate = new RestTemplate();

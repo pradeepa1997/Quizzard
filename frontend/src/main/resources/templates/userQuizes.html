@@ -15,10 +15,10 @@
   </head>
   <body class="body-main">
       
-    <!-- <div style="background-image:url('https://www.creativeclique.co.za/wp-content/uploads/2019/01/Ridge-Design-Website-Design-Background.jpg');position: fixed;background-repeat: no-repeat;background-position: center;background-attachment: fixed;background-size: cover;height:100vh">
+    <div style="background-image:url('https://www.creativeclique.co.za/wp-content/uploads/2019/01/Ridge-Design-Website-Design-Background.jpg');position: fixed;background-repeat: no-repeat;background-position: center;background-attachment: fixed;background-size: cover;height:100vh">
         <div style="background: rgba(34,34,51,0.95);width:100vw;height:100vh">
         </div>
-    </div> -->
+    </div>
     <div class="container-fluid p-0 m-0" >
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
@@ -60,12 +60,133 @@
                 </div>
             </div>
         </nav>
+
         <div class="mt-5 container text-white">
-            <h1 class="text-center" th:text="${quizName}"></h1>
-            <hr class="bg-white">
-            <h6> This is the first Question </h6>
-            
+            <div class="card" style="background: transparent;border: none;">
+                <h1 class="text-center" th:text="${quizName}"></h1>
+                <hr class="bg-white">
+            </div>
         </div>
+        <div class="container-fluid text-white">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="m-0 px-2" th:each="question : ${questions}">
+                        <div class="card my-3 border border-secondary quiz-hover" style="background:transparent;cursor:default">
+                            <div class="card-header border-bottom border-secondary" style="cursor: pointer;margin-left:-0.1px;margin-top: -0.1px;background: #223;" data-toggle="collapse" th:attr="data-target='#collapse'+${question.description}" >
+                                <div class="row">
+                                    <div class="col-2 border-right border-secondary">
+                                        <h5 class="px-4 m-0"> Question : </h5>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="row mx-0 px-0 d-flex justify-content-between">
+                                            <h5 class="px-4 m-0" th:text="${question.description} + '?'"></h5>
+                                            <h5 class="px-4 m-0"> <i class="fa fa-chevron-down" aria-hidden="true"></i></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body collapse" th:id="'collapse' + ${question.description}">
+                                <div class="text-white row">
+                                    <div class="col-md-8 border-right border-secondary">
+                                        <div class="m-2">
+                                            <div class="card bg-primary quiz-hover px-3 py-2" style="min-height: 50px;cursor: default;">
+                                                <div class="row">
+                                                    <div class="col-2 border-right border-white">
+                                                        <h6 class="mt-2"> Answer 01 </h6>
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <h6 class="mt-2" th:text="${question.choice1}"> </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="m-2">
+                                            <div class="card bg-primary quiz-hover px-3 py-2" style="min-height: 50px;cursor: default;">
+                                                <div class="row">
+                                                    <div class="col-2 border-right border-white">
+                                                        <h6 class="mt-2"> Answer 02 </h6>
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <h6 class="mt-2" th:text="${question.choice2}"> </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="m-2">
+                                            <div class="card bg-primary quiz-hover px-3 py-2" style="min-height: 50px;cursor: default;">
+                                                <div class="row">
+                                                    <div class="col-2 border-right border-white">
+                                                        <h6 class="mt-2"> Answer 03 </h6>
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <h6 class="mt-2" th:text="${question.choice3}"> </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="m-2">
+                                            <div class="card bg-primary quiz-hover px-3 py-2" style="min-height: 50px;cursor: default;">
+                                                <div class="row">
+                                                    <div class="col-2 border-right border-white">
+                                                        <h6 class="mt-2"> Answer 04 </h6>
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <h6 class="mt-2" th:text="${question.choice4}"> </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!-- <div class="card" style="border:none;max-height: 185px;">
+                                            <img src="../../images/back2.jpg" class="border-secondary" style="width:100%;height:185px;border-radius: 5px;border: solid;" alt="">
+                                        </div> -->
+                                        <div class="my-2">
+                                            <div class="card bg-success quiz-hover px-3 py-2" style="min-height: 50px;cursor: default;">
+                                                <div class="row">
+                                                    <div class="col-6 border-right border-white">
+                                                        <h6 class="mt-2"> Correct Answer </h6>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h6 class="mt-2" th:text="'0'+${question.correctAns}"> </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>                
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow mt-3 mr-3 quiz-hover" style="cursor:default;margin-left: -10px;">
+                        <div class="card header">
+                            <img src="../../images/back2.jpg" style="width:100%;height: auto;" alt="">
+                        </div>
+                        <div class="card-body bg primary">
+                            <h4 class="text-center m-0 bolder text-dark"  th:text="${quizName}"></h4>
+                            <hr class="m-1 p-0">
+                            <h6 class="text-center text-muted m-0" style="font-size:13px;"  th:text="${quizCategory}"></h6>
+                            <h6 class="text-center text-muted m-0 mb-2" style="font-size:13px;"  th:text="${quizSize} + ' Questions' "></h6>
+                            <div class="row m-0 p-0">
+                                <div class="col-6 m-0 p-1">
+                                    <a class="btn btn-primary btn-block btn-sm">
+                                        <h6 class="m-0" style="font-size: 13px;">Edit</h6>
+                                    </a>
+                                </div>
+                                <div class="col-6 m-0 p-1">
+                                    <button class="btn btn-danger btn-block btn-sm">
+                                        <h6 class="m-0" style="font-size: 13px;">Delete</h6>
+                                    </button>
+                                </div>
+                            </div>    
+                        </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
     <script src="javascript/addquestion.js"></script>  
   </body>
