@@ -25,6 +25,7 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class quizeController {
     JWTData jwttoken=new JWTData();
+    
     static public QuestionAtempt questionAtempt;
     static public List<Integer> answers=new ArrayList<Integer>();
     // static public String qid;
@@ -66,6 +67,21 @@ public class quizeController {
         System.out.println("\n\n\n\n\n\n\n\n\n"+ questions.get(0).getDescription() +"\n\n\n\n\n");
 
         return ( "userQuizes");
+    }
+    @GetMapping("/quiz/delete/{quizId}")
+    public String deleteQuiz(@PathVariable final Integer quizId){
+        System.out.println(quizId);
+        if(!jwttoken.isLog()){
+            return ("redirect:login");
+        }
+        final String url = "http://localhost:8081/api/quiz/"+ quizId;
+        final RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(url);
+
+        return  ("redirect:/profile/"+jwttoken.getUserId());
+
+
+        
     }
 
     
@@ -117,10 +133,9 @@ public class quizeController {
         Question temp= new Question();
         temp.setQuizID(Integer.parseInt(quizid));
         model.addAttribute("questions",temp);
-        return "question";   
-        
+        return "question";      
     }
-    
+
     @GetMapping("/attemptquiz/{quizid}/{question}")
     public String AttemptQuiz(@PathVariable final Integer quizid,@PathVariable final Integer question,final Model model){
         
@@ -207,7 +222,7 @@ public class quizeController {
     
     @GetMapping("/attemptquiz/{id}")
     public String AttemptQuiz(@PathVariable final Integer id,final Model model){
-        final String url = "http://localhost:8081/api/quiz/"+id;
+        final String url = "http://localhost:8081/api/q uiz/"+id;
         System.out.println(id);
         RestTemplate restTemplate = new RestTemplate();
         QuestionAtempt result=restTemplate.getForObject(url, QuestionAtempt.class);

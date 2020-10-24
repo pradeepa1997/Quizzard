@@ -97,9 +97,14 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-6 m-0 p-1">
-                                                    <button class="btn btn-danger btn-block btn-sm">
+                                                    <a th:href="@{${'/quiz/delete/'+quizlist.quizID}}">
+
+                                                    
+                                                    <button class="btn btn-danger btn-block btn-sm" 
+                                                    >
                                                         <h6 class="m-0" style="font-size: 13px;">Delete</h6>
                                                     </button>
+                                                    </a>
                                                 </div>
                                             </div>    
                                         </div>

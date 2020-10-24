@@ -330,3 +330,9 @@
 Jul 13, 2020 10:52:47 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTraceNotification
 2020.07.13 10:56:58 INFO  shutting down Metals
+2020.10.17 12:23:39 INFO  started: Metals version 0.9.4 in workspace 'E:\Uni works\Middleware Architecture\Assigemnt\Group Assigment\Quizzard\backend' for client vscode.
+2020.10.17 12:23:43 INFO  time: initialize in 4.12s
+2020.10.18 08:43:00 INFO  shutting down Metals
+2020.10.23 19:00:28 INFO  started: Metals version 0.9.4 in workspace 'E:\Uni works\Middleware Architecture\Assigemnt\Group Assigment\Quizzard\backend' for client vscode.
+2020.10.23 19:00:33 INFO  time: initialize in 4.62s
+2020.10.23 19:00:35 INFO  skipping build import with status 'Requested'
