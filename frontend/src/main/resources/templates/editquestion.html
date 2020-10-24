@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org/">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="css/addquiz.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <title> Quizzard </title>
+  </head>
+  <body onload="onLoad()">
+    <div style="background-image:url('https://www.creativeclique.co.za/wp-content/uploads/2019/01/Ridge-Design-Website-Design-Background.jpg');position: fixed;background-repeat: no-repeat;background-position: center;background-attachment: fixed;background-size: cover;height:100vh">
+        <div style="background: rgba(34,34,51,0.95);width:100vw;height:100vh">
+        </div>
+    </div>
+    <div class="container-fluid p-0 m-0" >
+    
+    </div>
+    <div class="container-fluid p-0 m-0" style="height: 100vh;background-color: #223;" >
+      <div class="addquestion-card" style="position: absolute;
+      background-color: white;
+      height: 580px;
+      width: 520px;
+      margin: auto;
+      margin-top: 100px;
+      margin-left: calc(50% - 260px);
+      border-radius: 20px;
+      padding: 30px;">
+          <h3 class="addquiz-header">Create Your quiz in Quizzard</h3>
+          <form class="form" action="#" th:action="@{/addnewquestion}" th:object="${questions}" method="post">
+            <div class="row ">
+                <div class="col-2">
+                </div>
+                <div class="col-8 ">
+                    <div class="form-group text-center">
+                        <label for="quizname">Question</label>
+                        <input type="text" class="form-control" id="description"  th:field="*{description}" required>
+                    </div>
+                </div>
+            </div>
+            <input type="text" class="form-control" id="choice1"  th:field="*{quizID}" style="display: none;" >
+            <input type="text" class="form-control" id="description"  th:field="*{questionID}" style="display: none;">
+            <div class="form-row align-items-center">
+                <div class="col align-items-center">
+                    <div class="form-group">
+                        <label for="quizname">Choice 1</label>
+                        <input type="text" class="form-control" id="choice1"  th:field="*{choice1}" required>
+                        
+                    </div>        
+                </div>
+                <div class="col align-items-center">
+                    <div class="form-group">
+                        <label for="quizname">Choice 2</label>
+                        <input type="text" class="form-control" id="choice2"  th:field="*{choice2}" required>
+                        </div>
+                </div>
+            </div>
+            <div class="form-row align-items-center">
+                <div class="col align-items-center">
+                    <div class="form-group">
+                        <label for="quizname">Choice 3</label>
+                        <input type="text" class="form-control" id="choice3"  th:field="*{choice3}" required>
+                    </div>        
+                </div>
+                <div class="col align-items-center">
+                    <div class="form-group">
+                        <label for="quizname">Choice 4</label>
+                        <input type="text" class="form-control" id="choice4"  th:field="*{choice4}" required>
+                    </div>        
+                </div>
+            </div>
+            <div class="form-row align-items-center">
+                <div class="col-2">
+
+                </div>
+                <div class="col-8 align-items-center">
+                    <div class="form-group text-center" >
+                        <label for="exampleInputPassword1" >Correct Answer</label>
+                        <select class="custom-select" id="quizeCategory" th:field="*{correctAns}" required onchange="changedisblity(event)">
+                            <option th:value="'1'" th:text="'Choice 1'"></option>
+                            <option th:value="'2'" th:text="'Choice 2'"></option>
+                            <option th:value="'3'" th:text="'Choice 3'"></option>
+                            <option th:value="'4'" th:text="'Choice 4'"></option>
+                            
+                        </select>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="btn-center" style="text-align: center;margin-top: 30px;">
+                <button type="submit" class="btn btn-primary">Update Question</button>
+            </div>
+            
+          </form>
+      </div>
+    </div>  
+    
+    <script src="javascript/addquestion.js"></script>
+  </body>
+</html>

@@ -3,6 +3,7 @@ package com.quiz.frontend.controller;
 import com.quiz.frontend.model.JWTData;
 import com.quiz.frontend.model.Question.Question;
 import com.quiz.frontend.model.Question.QuestionAtempt;
+import com.quiz.frontend.model.Question.QuestionGet;
 import com.quiz.frontend.model.Quiz.Quiz;
 import com.quiz.frontend.model.Quiz.QuizAnswer;
 import com.quiz.frontend.model.Quiz.QuizMark;
@@ -44,20 +45,23 @@ public class quizeController {
     @GetMapping("/quiz/{userId}/{quizId}")
     public String ViewQuiz(@PathVariable final Integer userId, @PathVariable final Integer quizId,final Model model){
         if(!jwttoken.isLog()){
-            return ("redirect:login");
+            return ("redirect:/login");
         }
         final String url = "http://localhost:8081/api/quiz/" + quizId;
         final RestTemplate restTemplate = new RestTemplate();
         final QuestionAtempt quiz = restTemplate.getForObject(url, QuestionAtempt.class);
         
 
-        List<Question> questions = new ArrayList<Question>();
-        for(int i=0;i<quiz.getQuestions().size();i++){
+        List<QuestionGet> questions = new ArrayList<QuestionGet>();
+        for(int i=0; i<quiz.getQuestions().size();i++){
+            System.out.println("qqqqqqqqqqqqiiiiiiddddd"+quiz.getQuestions().get(i).getQuestionID());
             questions.add(quiz.getQuestions().get(i));
         }
 
         model.addAttribute("username",jwttoken.getUserName());
+        model.addAttribute("newquestion",new QuestionGet());
         model.addAttribute("userID",jwttoken.getUserId());  
+        model.addAttribute("quizId",quiz.getQuiz().getQuizID());  
         model.addAttribute("quizName",quiz.getQuiz().getQuizName());
         model.addAttribute("quizCategory",quiz.getQuiz().getQuizCategory());
         model.addAttribute("quizSize",quiz.getQuestions().size());
@@ -72,18 +76,29 @@ public class quizeController {
     public String deleteQuiz(@PathVariable final Integer quizId){
         System.out.println(quizId);
         if(!jwttoken.isLog()){
-            return ("redirect:login");
+            return ("redirect:/login");
         }
         final String url = "http://localhost:8081/api/quiz/"+ quizId;
         final RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(url);
 
         return  ("redirect:/profile/"+jwttoken.getUserId());
-
-
         
     }
 
+    @GetMapping("/question/delete/{quizId}/{questionId}")
+    public String deleteQuestion(@PathVariable final Integer quizId,@PathVariable final Integer questionId){
+        
+        System.out.println(quizId+questionId);
+        if(!jwttoken.isLog()){
+            return ("redirect:login");
+        }
+        final String url = "http://localhost:8081/api/question/"+ questionId;
+        final RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(url);
+        return  ("redirect:/quiz/"+jwttoken.getUserId()+'/'+quizId);
+        
+    }
     
     @PostMapping("/addquiz")
     public String addQuizSubmit(@ModelAttribute QuizPost quizPost,final Model model){
@@ -120,6 +135,51 @@ public class quizeController {
         // return ("redirect:addquiz");   
         
     }
+
+    @GetMapping("/question/{quizId}/{questionId}/edit")
+    public String editQuestion(@PathVariable final Integer quizId,@PathVariable final Integer questionId,final Model model){
+        
+        System.out.println(quizId+questionId);
+        if(!jwttoken.isLog()){
+            return ("redirect:/login");
+        }
+        final String url = "http://localhost:8081/api/question/"+questionId;
+        final RestTemplate restTemplate = new RestTemplate();
+        QuestionGet question=restTemplate.getForObject(url,QuestionGet.class);
+        model.addAttribute("questions",question);        
+        return "editquestion";
+
+    }
+
+    @GetMapping("/question/{quizId}/addnew")
+    public String addnewQuestion(@PathVariable final Integer quizId,final Model model){
+        
+        System.out.println(quizId);
+        if(!jwttoken.isLog()){
+            return ("redirect:/login");
+        }
+        
+        
+        Question question=new Question();
+        question.setQuizID(quizId);
+        model.addAttribute("questions",question);        
+        return "addquestion";
+    }
+
+
+    @PostMapping("/addnewquestion")
+    public String addNewQuestionSubmit(@ModelAttribute QuestionGet question,final Model model){
+
+        final String url = "http://localhost:8081/api/question/add";
+        
+        RestTemplate restTemplate = new RestTemplate();
+        String quizid=restTemplate.postForObject(url,question,String.class);
+        System.out.println(quizid);
+
+        return  ("redirect:/quiz/"+jwttoken.getUserId()+'/'+question.getQuizID());
+         
+    }
+    
     
     @PostMapping("/addquestion")
     public String addQuestionSubmit(@ModelAttribute Question question,final Model model){
