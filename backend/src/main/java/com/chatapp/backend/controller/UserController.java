@@ -24,6 +24,7 @@ import com.chatapp.backend.repository.UserRepository;
 import com.chatapp.backend.model.User;
 import com.chatapp.backend.model.Question;
 import com.chatapp.backend.model.Quiz;
+import com.chatapp.backend.model.QuizeTrySend;
 import com.chatapp.backend.model.Quiztry;
 
 @RestController
@@ -57,13 +58,28 @@ public class UserController {
         Optional<User> user = usersrepo.findById(id);
         List<Quiz> quiz = quizrepo.findBycreatorID(id);
         List<Quiztry> quiztry = quiztryrepo.findByuserID(id);
+        List<QuizeTrySend> quizetry = new ArrayList<QuizeTrySend>(); 
+
+        for(int i=0;i<quiztry.size();i++){
+
+            Optional<Quiz> tempquiz=quizrepo.findById(quiztry.get(i).getQuizID());
+            if(tempquiz.isPresent()){
+                QuizeTrySend temp=new QuizeTrySend();
+                temp.setMarks(quiztry.get(i).getMarks());
+                temp.setQuizName(tempquiz.get().getQuizName());
+                quizetry.add(temp);
+            }
+            
+        }
+        
+        // System.out.println(quizetry);
         int quizSize = quiz.size();
-        int quiztrySize = quiztry.size();
+        int quiztrySize = quizetry.size();
         ArrayList<Object> list =new ArrayList<Object>();
         list.add(user);
         list.add(quiz);
         list.add(quizSize);
-        list.add(quiztry);
+        list.add(quizetry);
         list.add(quiztrySize);
         return list;
     }

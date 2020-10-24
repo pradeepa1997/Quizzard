@@ -4,6 +4,7 @@ import com.chatapp.backend.repository.Questionrepo;
 import com.chatapp.backend.repository.Quizrepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,6 +45,7 @@ public class QuizController {
         System.out.println(saved.getQuizID());
         return saved.getQuizID();
     }
+
     @GetMapping(value = "/{id}")
     public Questions getByID(@PathVariable final Integer id) {
 
@@ -59,7 +61,10 @@ public class QuizController {
         catch(Exception e){
             return null;
         }
-        
+    }
+    @DeleteMapping(value = "/{id}")
+    public void deleteByID(@PathVariable final Integer id) {
+        quizrepo.deleteById(id);
 
     }
     

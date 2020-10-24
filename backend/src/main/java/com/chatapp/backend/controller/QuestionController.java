@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +31,11 @@ public class QuestionController {
     @PostMapping(value = "/add")
     public Integer add(@RequestBody final Question question) {
         Question saved=questionrepo.save(question);
-        System.out.println(saved.getQuizID());
+        return saved.getQuizID();
+    }
+    @PutMapping(value = "/update")
+    public Integer update(@RequestBody final Question question) {
+        Question saved=questionrepo.save(question);
         return saved.getQuizID();
     }
 
@@ -40,21 +45,14 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/{id}")
-    public Optional<Question> getById(@PathVariable final Integer id) {
+    public Optional<Question> getById(@PathVariable final Integer id){
         return questionrepo.findById(id);
     }
 
     @GetMapping(value = "/getByQuizId/{quizId}")
     public List<Question> getByQuizID(@PathVariable final Integer quizId) {
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhi");
         List<Question> temp=questionrepo.findByQuizID(quizId);
         return temp;
     }
-    // @PostMapping(value = "/getByQuizId/{quizId}")
-    // public Integer getAllofQuiz(@RequestBody final Question question) {
-    //     return questionrepo.findByQuizID();
-       
-    // }
-
     
 }
